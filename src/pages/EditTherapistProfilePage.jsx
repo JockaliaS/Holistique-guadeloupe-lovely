@@ -10,6 +10,7 @@ import { Textarea } from '@/components/ui/textarea';
 import { useToast } from '@/components/ui/use-toast';
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@/components/ui/select';
 import { getTherapistById, updateTherapist } from '@/lib/therapists';
+import { getTherapistById, updateTherapist } from '@/lib/database';
 import { experienceCategories } from '@/lib/journeyData';
 import { cn } from '@/lib/utils';
 import { Checkbox } from '@/components/ui/checkbox';
@@ -38,8 +39,10 @@ const EditTherapistProfilePage = () => {
 
   useEffect(() => {
     const loggedInUserId = localStorage.getItem('loggedInUserId');
-    if (!loggedInUserId) {
-      toast({ variant: "destructive", title: "Accès non autorisé", description: "Vous devez être connecté pour modifier un profil." });
+    const userType = localStorage.getItem('loggedInUserType');
+    
+    if (!loggedInUserId || userType !== 'therapist') {
+      toast({ variant: "destructive", title: "Accès non autorisé", description: "Vous devez être connecté en tant que thérapeute pour modifier un profil." });
       navigate('/');
       return;
     }

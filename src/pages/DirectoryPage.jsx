@@ -6,6 +6,7 @@ import { Button } from '@/components/ui/button';
 import { useToast } from '@/components/ui/use-toast';
 import { Link, useLocation, useNavigate } from 'react-router-dom';
 import { getAllTherapists } from '@/lib/therapists';
+import { getAllTherapists } from '@/lib/database';
 
 const needsConfig = {
   "réconfort": { icon: Feather, label: "Réconfort", categoryIds: ["soin_energetique", "nettoyage_purification"] },
@@ -111,12 +112,12 @@ const DirectoryPage = () => {
                 />
               </div>
               <Button 
-                onClick={() => navigate('/annuaire-creations')}
+                onClick={() => navigate('/artistes')}
                 variant="outline"
                 className="w-full text-left justify-start pl-10 pr-4 py-3 h-auto rounded-xl border border-input bg-background hover:bg-accent/10 transition-all duration-300 relative"
               >
                 <Brush className="absolute left-3 top-1/2 transform -translate-y-1/2 text-muted-foreground w-5 h-5" />
-                Rechercher une création
+                Rechercher un artiste
               </Button>
             </div>
             <div className="flex items-center gap-2 overflow-x-auto pb-2 md:col-span-2">

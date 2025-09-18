@@ -4,35 +4,15 @@ import { motion } from 'framer-motion';
 import { BookOpen, Calendar, Sparkles } from 'lucide-react';
 import { Link } from 'react-router-dom';
 import { Button } from '@/components/ui/button';
+import { getAllBlogPosts } from '@/lib/database';
 
-const blogPosts = [
-  {
-    id: 1,
-    title: "🌌 Formes et fréquences : le langage secret de la géométrie sacrée",
-    date: "02 Août 2024",
-    excerpt: "Et si les formes n’étaient pas que des contours visibles, mais des vibrations figées dans la matière ? Et si, derrière chaque cercle, chaque spirale, chaque rosace, se cachait une fréquence qui dialogue en silence avec notre être profond ? ....",
-    image: "https://images.unsplash.com/photo-1518621736915-f3b1c811cd17?q=80&w=2070&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
-    link: "/blog/formes-et-frequences"
-  },
-  {
-    id: 2,
-    title: "🌍 La résonance de Schumann : le battement de cœur de la Terre",
-    date: "26 Juillet 2024",
-    excerpt: "Nous vivons tous baignés dans une mer invisible : celle des vibrations de la Terre. Comme chaque être vivant, la planète elle-même a un rythme, un pouls, une fréquence qui lui est propre. Cette fréquence porte un nom : la résonance de Schumann.",
-    image: "https://images.unsplash.com/photo-1543722530-539c3c415520?q=80&w=2070&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
-    link: "/blog/resonance-schumann"
-  },
-  {
-    id: 3,
-    title: "💧 L’eau, gardienne de mémoire",
-    date: "12 Juillet 2024",
-    excerpt: "L’eau est partout autour de nous : dans les océans, les rivières, les nuages… et elle est aussi en nous, car notre corps en est composé à plus de 70 %. Mais l’eau n’est pas seulement une substance vitale. Elle est aussi une gardienne de mémoire, un miroir de nos émotions et un lien vivant entre la matière et l’esprit.",
-    image: "https://images.unsplash.com/photo-1533219355137-593339174548?q=80&w=2070&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
-    link: "/blog/eau-memoire"
-  }
-];
 
 const BlogPage = () => {
+  const [blogPosts, setBlogPosts] = useState([]);
+
+  useEffect(() => {
+    setBlogPosts(getAllBlogPosts());
+  }, []);
   return (
     <div className="pt-16 min-h-screen">
       <Helmet>
@@ -80,12 +60,12 @@ const BlogPage = () => {
                   {post.title}
                 </h2>
                 <p className="text-sm text-foreground/70 flex items-center mb-4">
-                  <Calendar className="w-4 h-4 mr-2" /> {post.date}
+                  <Calendar className="w-4 h-4 mr-2" /> {new Date(post.publishedAt).toLocaleDateString('fr-FR')}
                 </p>
                 <p className="text-foreground/80 leading-relaxed flex-grow mb-4">
                   {post.excerpt}
                 </p>
-                <Link to={post.link}>
+                <Link to={`/blog/${post.slug}`}>
                   <Button variant="outline" className="w-full border-2 border-primary text-primary hover:bg-secondary">
                     <BookOpen className="w-4 h-4 mr-2" /> Lire la suite
                   </Button>

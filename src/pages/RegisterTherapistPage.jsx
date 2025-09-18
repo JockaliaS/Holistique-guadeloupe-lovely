@@ -13,6 +13,7 @@ import { Checkbox } from '@/components/ui/checkbox';
 import { cn } from '@/lib/utils';
 import { experienceCategories } from '@/lib/journeyData';
 import { addTherapist } from '@/lib/therapists';
+import { addTherapist } from '@/lib/database';
 
 
 const guadeloupeCommunes = [
@@ -165,10 +166,11 @@ const RegisterTherapistPage = () => {
 
     toast({
       title: "🌺 Fiche Créée !",
-      description: "Votre fiche vibratoire rayonne maintenant dans l'annuaire.",
+      description: `Votre espace personnel: /espace/${newTherapist.personalSpaceId}`,
     });
     
-    navigate('/annuaire');
+    // Rediriger vers l'espace personnel
+    navigate(`/espace/${newTherapist.personalSpaceId}`);
   };
 
   const Section = ({ id, title, icon: Icon, children }) => (

@@ -5,7 +5,13 @@ import Navigation from '@/components/Navigation';
 import HomePage from '@/pages/HomePage';
 import QuizPage from '@/pages/QuizPage';
 import DirectoryPage from '@/pages/DirectoryPage';
-import CreationsDirectoryPage from '@/pages/CreationsDirectoryPage';
+import ArtistsDirectoryPage from '@/pages/ArtistsDirectoryPage';
+import ArtistProfilePage from '@/pages/ArtistProfilePage';
+import RegisterArtistPage from '@/pages/RegisterArtistPage';
+import EditArtistProfilePage from '@/pages/EditArtistProfilePage';
+import AdminDashboardPage from '@/pages/AdminDashboardPage';
+import AdminLoginPage from '@/pages/AdminLoginPage';
+import PersonalSpacePage from '@/pages/PersonalSpacePage';
 import ElinePage from '@/pages/ElinePage';
 import TherapistProfile from '@/pages/TherapistProfile';
 import RegisterTherapistPage from '@/pages/RegisterTherapistPage';
@@ -44,7 +50,13 @@ function App() {
         <Route path="/" element={<HomePage />} />
         <Route path="/quiz" element={<QuizPage />} />
         <Route path="/annuaire" element={<DirectoryPage />} />
-        <Route path="/annuaire-creations" element={<CreationsDirectoryPage />} />
+        <Route path="/artistes" element={<ArtistsDirectoryPage />} />
+        <Route path="/artiste/:id" element={<ArtistProfilePage />} />
+        <Route path="/inscription-artiste" element={<RegisterArtistPage />} />
+        <Route path="/mon-compte/modifier-profil-artiste" element={<EditArtistProfilePage />} />
+        <Route path="/admin" element={<AdminDashboardPage />} />
+        <Route path="/admin/login" element={<AdminLoginPage />} />
+        <Route path="/espace/:spaceId" element={<PersonalSpacePage />} />
         <Route path="/annuaire-gate" element={<DirectoryGatePage />} />
         <Route path="/eline-dracon" element={<ElinePage />} />
         <Route path="/soin/rituel-dome-eau-terre" element={<RituelDomeEauTerrePage />} />

@@ -1,21 +1,29 @@
 import React, { useState } from 'react';
 import { Link, NavLink } from 'react-router-dom';
 import { motion, AnimatePresence } from 'framer-motion';
-import { Sparkles, Menu, X, Home, BookOpen, Users, Feather, Heart, Compass } from 'lucide-react';
+import { Sparkles, Menu, X, Home, BookOpen, Users, Feather, Heart, Compass, Palette, Shield } from 'lucide-react';
 import { Button } from '@/components/ui/button';
+import { getCurrentUser, isAdmin } from '@/lib/database';
 
 const Navigation = () => {
   const [isOpen, setIsOpen] = useState(false);
+  const currentUser = getCurrentUser();
+  const userIsAdmin = currentUser && isAdmin(currentUser.id);
 
   const navItems = [
     { to: '/', text: 'Accueil', icon: Home },
     { to: '/mon-voyage-interieur', text: 'Mon Voyage Intérieur', icon: Compass },
-    { to: '/annuaire-gate', text: 'Annuaire', icon: Users },
+    { to: '/annuaire-gate', text: 'Thérapeutes', icon: Users },
+    { to: '/artistes', text: 'Artistes', icon: Palette },
     { to: '/rejoindre-aventure', text: 'Artiste Thérapeute', icon: Feather },
     { to: '/eline-dracon', text: 'Éline Dracon', icon: Heart },
     { to: '/blog', text: 'Blog', icon: BookOpen },
   ];
 
+  // Ajouter le lien admin si l'utilisateur est admin
+  if (userIsAdmin) {
+    navItems.push({ to: '/admin', text: 'Admin', icon: Shield });
+  }
   const mobileMenuVariants = {
     closed: { opacity: 0, y: '-100%' },
     open: { opacity: 1, y: '0%' },

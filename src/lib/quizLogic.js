@@ -1,4 +1,4 @@
-import { getAllTherapists } from '@/lib/therapists';
+import { getAllTherapists } from '@/lib/database';
 
 export const frequencies = {
   Terre: {

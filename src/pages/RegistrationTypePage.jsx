@@ -72,6 +72,23 @@ import React, { useState } from 'react';
 
             <div className="space-y-6">
               <h2 className="text-2xl font-bold aura-text font-['Dancing_Script']">Veuillez sélectionner votre statut :</h2>
+              <div className="mb-6">
+                <h3 className="text-lg font-semibold mb-4">Type de professionnel :</h3>
+                <div className="flex flex-col sm:flex-row gap-4 mb-6">
+                  <Link to="/inscription-formulaire" className="flex-1">
+                    <Button className="w-full bg-gradient-to-r from-emerald-500 to-teal-600 text-white py-4 rounded-xl">
+                      <Heart className="w-6 h-6 mr-3" />
+                      Je suis Thérapeute/Praticien
+                    </Button>
+                  </Link>
+                  <Link to="/inscription-artiste" className="flex-1">
+                    <Button className="w-full bg-gradient-to-r from-purple-500 to-pink-600 text-white py-4 rounded-xl">
+                      <Palette className="w-6 h-6 mr-3" />
+                      Je suis Artiste/Créateur
+                    </Button>
+                  </Link>
+                </div>
+              </div>
               <RadioGroup value={userType} onValueChange={setUserType} className="flex flex-col md:flex-row gap-6 justify-center">
                 <motion.div whileHover={{ y: -5 }} className="flex-1">
                   <RadioGroupItem value="guardian" id="guardian" className="sr-only" />

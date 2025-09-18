@@ -6,6 +6,7 @@ import { ArrowLeft, Star, Heart, Phone, Globe, MapPin, Calendar, Sun, Wind, Drop
 import { Button } from '@/components/ui/button';
 import { useToast } from '@/components/ui/use-toast';
 import { getTherapistById } from '@/lib/therapists';
+import { getTherapistById } from '@/lib/database';
 import { experienceCategories } from '@/lib/journeyData';
 
 const elementConfig = {
