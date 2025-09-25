@@ -26,11 +26,14 @@ export function getJourneySpaceById(id) {
 
 export function createJourneySpace(journeyData) {
   const spaces = getAllJourneySpaces();
-  const spaceId = `journey-${Date.now()}-${Math.random().toString(36).substr(2, 9)}`;
+  const timestamp = Date.now();
+  const randomId = Math.random().toString(36).substr(2, 9);
+  const spaceId = `journey-${timestamp}-${randomId}`;
   
   const newSpace = {
     id: spaceId,
     ...journeyData,
+    userName: journeyData.userName || 'Voyageur Anonyme',
     createdAt: new Date().toISOString(),
     lastVisited: new Date().toISOString(),
     visits: 1
@@ -40,7 +43,9 @@ export function createJourneySpace(journeyData) {
   localStorage.setItem('journeySpaces', JSON.stringify(updatedSpaces));
   
   // Sauvegarder l'ID dans les cookies
-  document.cookie = `journeySpaceId=${spaceId}; path=/; max-age=${30 * 24 * 60 * 60}`; // 30 jours
+  const expirationDate = new Date();
+  expirationDate.setDate(expirationDate.getDate() + 30); // 30 jours
+  document.cookie = `journeySpaceId=${spaceId}; path=/; expires=${expirationDate.toUTCString()}; SameSite=Lax`;
   
   return newSpace;
 }

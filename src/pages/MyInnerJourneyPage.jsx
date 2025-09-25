@@ -67,6 +67,15 @@ const intentions = {
 };
 
 const WelcomeStep = ({ onNext }) => {
+  const [existingSpace, setExistingSpace] = useState(null);
+  
+  useEffect(() => {
+    const space = getCurrentJourneySpaceFromCookie();
+    if (space) {
+      setExistingSpace(space);
+    }
+  }, []);
+
     const step = journeySteps.find(s => s.id === 'welcome');
     return (
         <motion.div key={step.id} initial={{ opacity: 0 }} animate={{ opacity: 1 }} exit={{ opacity: 0 }} transition={{ duration: 0.5 }} className="w-full text-center">
@@ -212,16 +221,7 @@ const ExperienceStep = ({ intention, selectedExperiences, onExperienceChange }) 
 const MyInnerJourneyPage = () => {
   const [currentStepIndex, setCurrentStepIndex] = useState(0);
   const [formData, setFormData] = useState({});
-  const [existingSpace, setExistingSpace] = useState(null);
   const navigate = useNavigate();
-
-  useEffect(() => {
-    // Vérifier s'il y a un espace existant
-    const space = getCurrentJourneySpaceFromCookie();
-    if (space) {
-      setExistingSpace(space);
-    }
-  }, []);
 
   const handleNext = () => {
     if (currentStepIndex < journeySteps.length - 1) {
