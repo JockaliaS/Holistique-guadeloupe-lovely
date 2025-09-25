@@ -110,27 +110,27 @@ const TherapistProfile = () => {
               </p>
               
               {therapist.mantra && (
-                <p className="text-xl text-emerald-600 font-semibold">
+                <p className="text-xl text-emerald-400 font-semibold">
                   Mantra: "{therapist.mantra}"
                 </p>
               )}
 
 
               <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
-                <div className="flex items-center space-x-3 text-slate-700">
+                <div className="flex items-center space-x-3 text-white/80">
                   <Star className="w-5 h-5 text-amber-500" />
                   <span>{therapist.rating > 0 ? `${therapist.rating}/5` : 'Nouveau membre'}</span>
                 </div>
-                <div className="flex items-center space-x-3 text-slate-700">
+                <div className="flex items-center space-x-3 text-white/80">
                   <MapPin className="w-5 h-5 text-teal-500" />
                   <span>Terre d'Ancrage: {therapist.commune}</span>
                 </div>
-                <div className="flex items-center space-x-3 text-slate-700">
+                <div className="flex items-center space-x-3 text-white/80">
                   <Phone className="w-5 h-5 text-purple-500" />
                   <span>Téléphone: {therapist.phone}</span>
                 </div>
                 {therapist.website && (
-                  <div className="flex items-center space-x-3 text-slate-700">
+                  <div className="flex items-center space-x-3 text-white/80">
                     <Globe className="w-5 h-5 text-cyan-500" />
                     <span>Site web: {therapist.website}</span>
                   </div>

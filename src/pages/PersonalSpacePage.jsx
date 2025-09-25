@@ -214,7 +214,7 @@ const PersonalSpacePage = () => {
                         onChange={handleChange}
                       />
                     ) : (
-                      <p className="text-lg text-primary font-semibold">{person.craft}</p>
+                      <p className="text-lg text-emerald-400 font-semibold">{person.craft}</p>
                     )}
                   </div>
                 )}
@@ -229,7 +229,7 @@ const PersonalSpacePage = () => {
                       onChange={handleChange}
                     />
                   ) : (
-                    <p className="text-lg">{person.commune}</p>
+                    <p className="text-lg text-white/90">{person.commune}</p>
                   )}
                 </div>
 
@@ -246,7 +246,7 @@ const PersonalSpacePage = () => {
                           rows={3}
                         />
                       ) : (
-                        <p className="text-foreground/80">{person.mission}</p>
+                        <p className="text-white/90">{person.mission}</p>
                       )}
                     </div>
                     <div>
@@ -260,7 +260,7 @@ const PersonalSpacePage = () => {
                           rows={3}
                         />
                       ) : (
-                        <p className="text-foreground/80">{person.approach}</p>
+                        <p className="text-white/90">{person.approach}</p>
                       )}
                     </div>
                   </>
@@ -277,7 +277,7 @@ const PersonalSpacePage = () => {
                           rows={3}
                         />
                       ) : (
-                        <p className="text-foreground/80">{person.description}</p>
+                        <p className="text-white/90">{person.description}</p>
                       )}
                     </div>
                     <div>
@@ -290,7 +290,7 @@ const PersonalSpacePage = () => {
                           onChange={handleChange}
                         />
                       ) : (
-                        <p className="text-foreground/80">{person.priceRange}</p>
+                        <p className="text-white/90">{person.priceRange}</p>
                       )}
                     </div>
                   </>
@@ -306,7 +306,7 @@ const PersonalSpacePage = () => {
                       onChange={handleChange}
                     />
                   ) : (
-                    <p className="text-foreground/80">{isTherapist ? person.phone : person.contact}</p>
+                    <p className="text-white/90">{isTherapist ? person.phone : person.contact}</p>
                   )}
                 </div>
               </div>

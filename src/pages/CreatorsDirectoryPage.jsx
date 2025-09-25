@@ -140,16 +140,16 @@ const CreatorsDirectoryPage = () => {
                       {creator.name}
                     </span>
                   </h3>
-                  <p className="font-semibold text-primary mb-3">{creator.craft}</p>
-                  <p className="text-foreground/80 leading-relaxed text-sm flex-grow mb-4">
+                  <p className="font-semibold text-emerald-400 mb-3">{creator.craft}</p>
+                  <p className="text-white/90 leading-relaxed text-sm flex-grow mb-4">
                     {creator.description}
                   </p>
                   <div className="space-y-2 mb-4">
-                    <div className="flex items-center text-foreground/80 text-sm">
+                    <div className="flex items-center text-white/80 text-sm">
                       <MapPin className="w-4 h-4 mr-2 flex-shrink-0" />
                       <span>{creator.commune}</span>
                     </div>
-                    <div className="flex items-center text-foreground/80 text-sm">
+                    <div className="flex items-center text-white/80 text-sm">
                       <Euro className="w-4 h-4 mr-2 flex-shrink-0" />
                       <span>{creator.priceRange}</span>
                     </div>

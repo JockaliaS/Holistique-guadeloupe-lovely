@@ -114,7 +114,7 @@ const TherapistsDirectoryPage = () => {
                           {therapist.name}
                         </span>
                       </h3>
-                      <p className="text-foreground/80 leading-relaxed italic mb-3">
+                      <p className="text-white/90 leading-relaxed italic mb-3">
                         "{therapist.vibrationalPhrase}"
                       </p>
                       <div className="flex flex-wrap gap-2 mb-3">
@@ -127,11 +127,11 @@ const TherapistsDirectoryPage = () => {
                     </div>
 
                     <div className="flex items-center justify-between">
-                      <div className="flex items-center text-foreground/80">
+                      <div className="flex items-center text-white/80">
                         <MapPin className="w-4 h-4 mr-1" />
                         <span>{therapist.commune}</span>
                       </div>
-                      <div className="flex items-center text-foreground/80">
+                      <div className="flex items-center text-white/80">
                         <Star className="w-5 h-5 text-yellow-400 fill-current" />
                         <span className="ml-1 font-semibold">{therapist.rating > 0 ? therapist.rating : 'N/A'}</span>
                       </div>
