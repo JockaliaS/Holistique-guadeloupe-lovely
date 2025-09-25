@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { useLocation, useNavigate, Link } from 'react-router-dom';
 import { motion } from 'framer-motion';
 import { Helmet } from 'react-helmet';
-import { Sparkles, Heart, Calendar, MapPin, Clock, Star, ArrowLeft, Share2, Bookmark, Edit3 } from 'lucide-react';
+import { Sparkles, Heart, Calendar, MapPin, Clock, Star, ArrowLeft, Share2, Bookmark, FileEdit as Edit3 } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { useToast } from '@/components/ui/use-toast';
 import { createJourneySpace, getCurrentJourneySpaceFromCookie } from '@/lib/journeySpaces';

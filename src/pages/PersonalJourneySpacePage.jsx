@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { useParams, useNavigate, Link } from 'react-router-dom';
 import { motion } from 'framer-motion';
 import { Helmet } from 'react-helmet';
-import { Compass, Heart, Calendar, MapPin, Clock, Star, ArrowLeft, Edit3, Trash2, Share2, Eye } from 'lucide-react';
+import { Compass, Heart, Calendar, MapPin, Clock, Star, ArrowLeft, FileEdit as Edit3, Trash2, Share2, Eye } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { useToast } from '@/components/ui/use-toast';
 import { getJourneySpaceById, updateJourneySpace, deleteJourneySpace } from '@/lib/journeySpaces';
