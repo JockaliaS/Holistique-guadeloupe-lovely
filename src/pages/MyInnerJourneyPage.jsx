@@ -10,6 +10,7 @@ import { experienceCategories } from '@/lib/journeyData';
 import { cn } from '@/lib/utils';
 import { Checkbox } from '@/components/ui/checkbox';
 import { ChevronDown } from 'lucide-react';
+import { getCurrentJourneySpaceFromCookie } from '@/lib/journeySpaces';
 
 const journeySteps = [
   {
@@ -73,6 +74,28 @@ const WelcomeStep = ({ onNext }) => {
                 <h2 className="text-4xl md:text-5xl font-bold mb-4 aura-text font-['Dancing_Script']">{step.title}</h2>
                 <p className="text-2xl md:text-3xl text-foreground/80 mb-12 leading-relaxed max-w-2xl mx-auto">{step.question}</p>
             </div>
+            
+            {existingSpace && (
+                <motion.div
+                    initial={{ opacity: 0, y: 20 }}
+                    animate={{ opacity: 1, y: 0 }}
+                    transition={{ delay: 0.3 }}
+                    className="crystal-card rounded-2xl p-6 mb-8 bg-emerald-500/10 border border-emerald-500/20"
+                >
+                    <h3 className="text-xl font-bold text-emerald-600 mb-2">
+                        ✨ Vous avez déjà un espace personnel !
+                    </h3>
+                    <p className="text-foreground/80 mb-4">
+                        Créé le {new Date(existingSpace.createdAt).toLocaleDateString('fr-FR')}
+                    </p>
+                    <Link to={`/mon-espace/${existingSpace.id}`}>
+                        <Button variant="outline" className="border-emerald-500 text-emerald-600 hover:bg-emerald-50">
+                            Accéder à mon espace
+                        </Button>
+                    </Link>
+                </motion.div>
+            )}
+            
             <div className="flex flex-col md:flex-row gap-6 justify-center">
                 <Button onClick={onNext} size="lg" className="bg-gradient-to-r from-emerald-500 to-teal-600 hover:from-emerald-600 hover:to-teal-700 text-white px-8 py-4 text-xl rounded-full shadow-lg energy-pulse">
                     Je compose ma journée <ArrowRight className="w-5 h-5 ml-2" />
@@ -189,15 +212,25 @@ const ExperienceStep = ({ intention, selectedExperiences, onExperienceChange }) 
 const MyInnerJourneyPage = () => {
   const [currentStepIndex, setCurrentStepIndex] = useState(0);
   const [formData, setFormData] = useState({});
+  const [existingSpace, setExistingSpace] = useState(null);
   const navigate = useNavigate();
+
+  useEffect(() => {
+    // Vérifier s'il y a un espace existant
+    const space = getCurrentJourneySpaceFromCookie();
+    if (space) {
+      setExistingSpace(space);
+    }
+  }, []);
 
   const handleNext = () => {
     if (currentStepIndex < journeySteps.length - 1) {
       setCurrentStepIndex(currentStepIndex + 1);
     } else {
       // Final step: navigate to results
-      console.log("Final form data:", formData);
-      // navigate('/mon-voyage-interieur/resultats'); // Example of final navigation
+      navigate('/mon-voyage-interieur/resultats', { 
+        state: { journeyData: formData } 
+      });
     }
   };
 
@@ -281,7 +314,7 @@ const MyInnerJourneyPage = () => {
                         Précédent
                     </Button>
                     <Button onClick={handleNext} size="lg" className="bg-gradient-to-r from-emerald-500 to-teal-600 hover:from-emerald-600 hover:to-teal-700 text-white" disabled={isNextDisabled()}>
-                        {currentStepIndex === journeySteps.length - 1 ? '🚧 Voir les résultats' : 'Suivant'}
+                        {currentStepIndex === journeySteps.length - 1 ? 'Voir mon récapitulatif' : 'Suivant'}
                         <ArrowRight className="w-5 h-5 ml-2" />
                     </Button>
                 </div>

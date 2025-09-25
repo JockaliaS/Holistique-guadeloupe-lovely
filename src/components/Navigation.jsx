@@ -13,7 +13,7 @@ const Navigation = () => {
   const navItems = [
     { to: '/', text: 'Accueil', icon: Home },
     { to: '/mon-voyage-interieur', text: 'Mon Voyage Intérieur', icon: Compass },
-    { to: '/directory-gate', text: 'Thérapeutes', icon: Heart },
+    { to: '/annuaire-gate', text: 'Thérapeutes', icon: Heart },
     { to: '/artistes', text: 'Artistes', icon: Palette },
     { to: '/therapist-charter', text: 'Devenir Praticien', icon: Feather },
     { to: '/eline-dracon', text: 'Éline Dracon', icon: Users },

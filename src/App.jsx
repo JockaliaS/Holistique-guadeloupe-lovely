@@ -29,6 +29,9 @@ import AirPage from '@/pages/AirPage';
 import EtherPage from '@/pages/EtherPage';
 import TherapistCharterPage from '@/pages/TherapistCharterPage';
 import ContactPage from '@/pages/ContactPage';
+import JourneyResultsPage from '@/pages/JourneyResultsPage';
+import PersonalJourneySpacePage from '@/pages/PersonalJourneySpacePage';
+import JourneySpaceIndicator from '@/components/JourneySpaceIndicator';
 import { Toaster } from '@/components/ui/toaster';
 import ScrollToTop from '@/components/ScrollToTop';
 
@@ -42,6 +45,7 @@ function App() {
       
       <ScrollToTop />
       <Navigation />
+      <JourneySpaceIndicator />
       
       <Routes>
         <Route path="/" element={<HomePage />} />
@@ -65,6 +69,8 @@ function App() {
         <Route path="/blog/:slug" element={<BlogPostPage />} />
         <Route path="/edit-therapist-profile" element={<EditTherapistProfilePage />} />
         <Route path="/mon-voyage-interieur" element={<MyInnerJourneyPage />} />
+        <Route path="/mon-voyage-interieur/resultats" element={<JourneyResultsPage />} />
+        <Route path="/mon-espace/:spaceId" element={<PersonalJourneySpacePage />} />
         <Route path="/porte/terre" element={<TerrePage />} />
         <Route path="/porte/eau" element={<EauPage />} />
         <Route path="/porte/feu" element={<FeuPage />} />
