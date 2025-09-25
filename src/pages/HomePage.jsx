@@ -16,7 +16,7 @@ const HomePage = () => {
     }} className="py-20 md:py-32 flex items-center justify-center text-center relative overflow-hidden">
         <div className="absolute inset-0 bg-gradient-to-br from-background via-transparent to-background z-10"></div>
         <div className="absolute inset-0">
-          <img class="object-cover w-full h-full opacity-30" alt="Paysage mystique de Guadeloupe avec une lumière douce et éthérée" src="https://horizons-cdn.hostinger.com/31d0e86a-732d-4c00-87e3-8bc851042c67/img_2048-rMI6J.jpeg" />
+          <img className="object-cover w-full h-full opacity-30" alt="Paysage mystique de Guadeloupe avec une lumière douce et éthérée" src="https://horizons-cdn.hostinger.com/31d0e86a-732d-4c00-87e3-8bc851042c67/img_2048-rMI6J.jpeg" />
         </div>
 
         <div className="relative z-20 max-w-4xl mx-auto px-4">
@@ -142,6 +142,7 @@ const HomePage = () => {
                 Rejoindre l'aventure
               </Button>
             </Link>
+            </Link>
           </motion.div>
         </div>
       </section>
@@ -163,12 +164,12 @@ const HomePage = () => {
             <h2 className="text-4xl md:text-5xl font-bold mb-6">
               <span className="aura-text font-['Dancing_Script']">Qui suis-je ?</span>
             </h2>
-            <p className="text-lg text-foreground/80 mb-6 leading-relaxed">J’ai créé cet espace pour rappeler que nous sommes bien plus qu’un corps physique. Derrière la matière, il y a un souffle, une lumière, une mission unique : celle de notre âme. Dans le tumulte de la vie moderne, happée par la vitesse et le poids du quotidien, il est facile d’oublier cette grande dimension sacrée. Pourtant, prendre soin de son être spirituel, l’honorer et le nourrir, fait partie intégrante du grand voyage qu’est la vie.</p>
+            <p className="text-lg text-foreground/80 mb-6 leading-relaxed">J'ai créé cet espace pour rappeler que nous sommes bien plus qu'un corps physique. Derrière la matière, il y a un souffle, une lumière, une mission unique : celle de notre âme. Dans le tumulte de la vie moderne, happée par la vitesse et le poids du quotidien, il est facile d'oublier cette grande dimension sacrée. Pourtant, prendre soin de son être spirituel, l'honorer et le nourrir, fait partie intégrante du grand voyage qu'est la vie.</p>
             <p className="text-lg text-foreground/80 mb-6 leading-relaxed">À travers les expériences, soins, arts et rituels proposés ici, mon souhait est que chacun retrouve ce lien intime avec son essence. 
-Que chaque journée, même ordinaire, devienne un rappel à l’essentiel : écouter son âme, l’aimer, être en joie et lui permettre de rayonner.</p>
-            <p className="text-lg text-foreground/80 mb-6 leading-relaxed">Les Êtres qui composent cette plateforme ne sont pas seulement des praticiens mais des artistes, des créateurs. Car c’est dans l’art, sous toutes ses formes, que le meilleur de l’âme se révèle. Leur mission est de semer des espaces de beauté, de guérison et d’harmonisation, où chacun peut se reconnecter à sa propre essence. Ici, chaque soin, chaque œuvre, chaque geste créatif devient un passage sacré vers plus de clarté intérieure, plus de vérité et plus d’unité. Ici, l’art est une médecine nouvelle.</p>
-            <p className="text-lg text-foreground/80 mb-8 leading-relaxed">Et dans la vision de Terra Nova, cette médecine ne s’épanouit jamais seule : elle prend toute sa force dans le Lyannaj, ce tissage vivant entre artistes, thérapeutes, âmes-médecine et les âmes en quête d’expérience. Quand ces présences se rencontrent, un champ plus vaste s’ouvre, bien au-delà de ce que chacun pourrait offrir seul. Le collectif devient une guérison en lui-même : il nourrit, équilibre, inspire et élève. Dans ce maillage, chaque talent trouve sa place, chaque voix résonne, chaque présence compte.</p>
-            <p className="text-lg text-foreground/80 mb-8 leading-relaxed">De cette union naît l’holistique véritable : un retour à l’unité, une guérison qui englobe le corps, l’âme et le lien au vivant. Par cette expérience, je te souhaite la reconnexion, l’évasion et le souvenir de qui tu es vraiment : un être spirituel en chemin vers sa propre lumière. </p>
+Que chaque journée, même ordinaire, devienne un rappel à l'essentiel : écouter son âme, l'aimer, être en joie et lui permettre de rayonner.</p>
+            <p className="text-lg text-foreground/80 mb-6 leading-relaxed">Les Êtres qui composent cette plateforme ne sont pas seulement des praticiens mais des artistes, des créateurs. Car c'est dans l'art, sous toutes ses formes, que le meilleur de l'âme se révèle. Leur mission est de semer des espaces de beauté, de guérison et d'harmonisation, où chacun peut se reconnecter à sa propre essence. Ici, chaque soin, chaque œuvre, chaque geste créatif devient un passage sacré vers plus de clarté intérieure, plus de vérité et plus d'unité. Ici, l'art est une médecine nouvelle.</p>
+            <p className="text-lg text-foreground/80 mb-8 leading-relaxed">Et dans la vision de Terra Nova, cette médecine ne s'épanouit jamais seule : elle prend toute sa force dans le Lyannaj, ce tissage vivant entre artistes, thérapeutes, âmes-médecine et les âmes en quête d'expérience. Quand ces présences se rencontrent, un champ plus vaste s'ouvre, bien au-delà de ce que chacun pourrait offrir seul. Le collectif devient une guérison en lui-même : il nourrit, équilibre, inspire et élève. Dans ce maillage, chaque talent trouve sa place, chaque voix résonne, chaque présence compte.</p>
+            <p className="text-lg text-foreground/80 mb-8 leading-relaxed">De cette union naît l'holistique véritable : un retour à l'unité, une guérison qui englobe le corps, l'âme et le lien au vivant. Par cette expérience, je te souhaite la reconnexion, l'évasion et le souvenir de qui tu es vraiment : un être spirituel en chemin vers sa propre lumière. </p>
             <p className="text-lg text-foreground/80 mb-8 leading-relaxed">Avec Amour,<br />✨ Eline</p>
             <Link to="/eline-dracon">
               <Button size="lg" variant="outline" className="border-2 border-primary text-primary hover:bg-secondary rounded-full px-8 py-4 text-lg">
