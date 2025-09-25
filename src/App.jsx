@@ -51,6 +51,7 @@ function App() {
         <Route path="/" element={<HomePage />} />
         <Route path="/quiz" element={<QuizPage />} />
         <Route path="/directory" element={<TherapistsDirectoryPage />} />
+        <Route path="/annuaire-gate" element={<DirectoryGatePage />} />
         <Route path="/artistes" element={<CreatorsDirectoryPage />} />
         <Route path="/artiste/:id" element={<CreatorProfilePage />} />
         <Route path="/register-creator" element={<RegisterCreatorPage />} />
@@ -58,7 +59,6 @@ function App() {
         <Route path="/admin" element={<AdminPage />} />
         <Route path="/admin/login" element={<AdminLoginPage />} />
         <Route path="/espace/:spaceId" element={<PersonalSpacePage />} />
-        <Route path="/directory-gate" element={<DirectoryGatePage />} />
         <Route path="/eline-dracon" element={<ElinePage />} />
         <Route path="/soin/rituel-dome-eau-terre" element={<RituelDomeEauTerrePage />} />
         <Route path="/soin/:serviceId" element={<ServiceDetailPage />} />

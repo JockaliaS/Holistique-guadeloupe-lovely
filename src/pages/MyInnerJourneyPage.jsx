@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { Helmet } from 'react-helmet';
 import { motion, AnimatePresence } from 'framer-motion';
 import { Compass, Sparkles, ArrowRight, ArrowLeft, Heart, Brush, Sun, Waves, Users, Home, Trees as Tree, Droplets, Clock, Star, Coffee, Wind, Leaf, MapPin, Calendar, Tent, Palmtree, Mountain, Paintbrush } from 'lucide-react';
@@ -67,6 +68,15 @@ const intentions = {
 };
 
 const WelcomeStep = ({ onNext }) => {
+  const [existingSpace, setExistingSpace] = useState(null);
+  
+  useEffect(() => {
+    const space = getCurrentJourneySpaceFromCookie();
+    if (space) {
+      setExistingSpace(space);
+    }
+  }, []);
+
   const [existingSpace, setExistingSpace] = useState(null);
   
   useEffect(() => {
