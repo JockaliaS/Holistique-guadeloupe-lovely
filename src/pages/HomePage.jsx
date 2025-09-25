@@ -136,10 +136,12 @@ const HomePage = () => {
         }} viewport={{
           once: true
         }}>
+            <Link to="/rejoindre-aventure">
             <Link to="/therapist-charter">
               <Button size="lg" className="bg-gradient-to-r from-primary to-accent text-white px-10 py-4 text-xl rounded-full shadow-lg energy-pulse">
                 Rejoindre l'aventure
               </Button>
+            </Link>
             </Link>
           </motion.div>
         </div>

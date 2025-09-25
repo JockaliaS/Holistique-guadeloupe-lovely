@@ -29,9 +29,6 @@ import AirPage from '@/pages/AirPage';
 import EtherPage from '@/pages/EtherPage';
 import TherapistCharterPage from '@/pages/TherapistCharterPage';
 import ContactPage from '@/pages/ContactPage';
-import JourneyResultsPage from '@/pages/JourneyResultsPage';
-import PersonalJourneySpacePage from '@/pages/PersonalJourneySpacePage';
-import JourneySpaceIndicator from '@/components/JourneySpaceIndicator';
 import { Toaster } from '@/components/ui/toaster';
 import ScrollToTop from '@/components/ScrollToTop';
 
@@ -45,13 +42,11 @@ function App() {
       
       <ScrollToTop />
       <Navigation />
-      <JourneySpaceIndicator />
       
       <Routes>
         <Route path="/" element={<HomePage />} />
         <Route path="/quiz" element={<QuizPage />} />
         <Route path="/directory" element={<TherapistsDirectoryPage />} />
-        <Route path="/annuaire-gate" element={<DirectoryGatePage />} />
         <Route path="/artistes" element={<CreatorsDirectoryPage />} />
         <Route path="/artiste/:id" element={<CreatorProfilePage />} />
         <Route path="/register-creator" element={<RegisterCreatorPage />} />
@@ -59,6 +54,7 @@ function App() {
         <Route path="/admin" element={<AdminPage />} />
         <Route path="/admin/login" element={<AdminLoginPage />} />
         <Route path="/espace/:spaceId" element={<PersonalSpacePage />} />
+        <Route path="/directory-gate" element={<DirectoryGatePage />} />
         <Route path="/eline-dracon" element={<ElinePage />} />
         <Route path="/soin/rituel-dome-eau-terre" element={<RituelDomeEauTerrePage />} />
         <Route path="/soin/:serviceId" element={<ServiceDetailPage />} />
@@ -69,8 +65,6 @@ function App() {
         <Route path="/blog/:slug" element={<BlogPostPage />} />
         <Route path="/edit-therapist-profile" element={<EditTherapistProfilePage />} />
         <Route path="/mon-voyage-interieur" element={<MyInnerJourneyPage />} />
-        <Route path="/mon-voyage-interieur/resultats" element={<JourneyResultsPage />} />
-        <Route path="/mon-espace/:spaceId" element={<PersonalJourneySpacePage />} />
         <Route path="/porte/terre" element={<TerrePage />} />
         <Route path="/porte/eau" element={<EauPage />} />
         <Route path="/porte/feu" element={<FeuPage />} />

@@ -127,7 +127,7 @@ const AdminPage = () => {
                   <div>
                     <p className="font-semibold">{item.name || item.title}</p>
                     {item.craft && <p className="text-sm text-foreground/60">{item.craft}</p>}
-                    {item.vibrationalPhrase && <p className="text-sm text-white/70 italic">"{item.vibrationalPhrase}"</p>}
+                    {item.vibrationalPhrase && <p className="text-sm text-foreground/60 italic">"{item.vibrationalPhrase}"</p>}
                   </div>
                 </td>
                 <td className="px-6 py-4">
@@ -138,7 +138,7 @@ const AdminPage = () => {
                       {item.status}
                     </span>
                   ) : (
-                    <span className="text-white/80">{item.commune}</span>
+                    <span className="text-foreground/80">{item.commune}</span>
                   )}
                 </td>
                 <td className="px-6 py-4">

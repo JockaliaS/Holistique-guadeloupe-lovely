@@ -62,7 +62,7 @@ const BlogListPage = () => {
                 <p className="text-sm text-foreground/70 flex items-center mb-4">
                   <Calendar className="w-4 h-4 mr-2" /> {new Date(post.publishedAt).toLocaleDateString('fr-FR')}
                 </p>
-                <p className="text-white/90 leading-relaxed flex-grow mb-4">
+                <p className="text-foreground/80 leading-relaxed flex-grow mb-4">
                   {post.excerpt}
                 </p>
                 <Link to={`/blog/${post.slug}`}>

@@ -124,7 +124,7 @@ const DoorCard = ({
       </div>
       
       <motion.div layout className="p-6">
-        <p className="text-white/90 mb-4">{door.intro}</p>
+        <p className="text-foreground/80 mb-4">{door.intro}</p>
         
         <AnimatePresence>
           {isOpen && !door.link && <motion.div key="content" initial={{
@@ -141,11 +141,11 @@ const DoorCard = ({
           ease: 'easeInOut'
         }} className="overflow-hidden">
               <div className="pb-4">
-                <p className="italic text-white/80 mb-3">{door.discovery}</p>
-                <ul className="space-y-2 list-disc list-inside text-white/90">
+                <p className="italic text-foreground/70 mb-3">{door.discovery}</p>
+                <ul className="space-y-2 list-disc list-inside text-foreground/80">
                   {door.details.map((item, index) => <li key={index}>{item}</li>)}
                 </ul>
-                <p className="mt-4 font-semibold text-white">{door.conclusion}</p>
+                <p className="mt-4 font-semibold text-foreground">{door.conclusion}</p>
               </div>
             </motion.div>}
         </AnimatePresence>

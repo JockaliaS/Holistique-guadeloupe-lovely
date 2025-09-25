@@ -1,5 +1,4 @@
 import React, { useState } from 'react';
-import React, { useState, useEffect } from 'react';
 import { Helmet } from 'react-helmet';
 import { motion, AnimatePresence } from 'framer-motion';
 import { Compass, Sparkles, ArrowRight, ArrowLeft, Heart, Brush, Sun, Waves, Users, Home, Trees as Tree, Droplets, Clock, Star, Coffee, Wind, Leaf, MapPin, Calendar, Tent, Palmtree, Mountain, Paintbrush } from 'lucide-react';
@@ -11,7 +10,6 @@ import { experienceCategories } from '@/lib/journeyData';
 import { cn } from '@/lib/utils';
 import { Checkbox } from '@/components/ui/checkbox';
 import { ChevronDown } from 'lucide-react';
-import { getCurrentJourneySpaceFromCookie } from '@/lib/journeySpaces';
 
 const journeySteps = [
   {
@@ -68,53 +66,13 @@ const intentions = {
 };
 
 const WelcomeStep = ({ onNext }) => {
-  const [existingSpace, setExistingSpace] = useState(null);
-  
-  useEffect(() => {
-    const space = getCurrentJourneySpaceFromCookie();
-    if (space) {
-      setExistingSpace(space);
-    }
-  }, []);
-
-  const [existingSpace, setExistingSpace] = useState(null);
-  
-  useEffect(() => {
-    const space = getCurrentJourneySpaceFromCookie();
-    if (space) {
-      setExistingSpace(space);
-    }
-  }, []);
-
     const step = journeySteps.find(s => s.id === 'welcome');
     return (
         <motion.div key={step.id} initial={{ opacity: 0 }} animate={{ opacity: 1 }} exit={{ opacity: 0 }} transition={{ duration: 0.5 }} className="w-full text-center">
             <div className="text-center mb-10">
                 <h2 className="text-4xl md:text-5xl font-bold mb-4 aura-text font-['Dancing_Script']">{step.title}</h2>
-                <p className="text-2xl md:text-3xl text-white/90 mb-12 leading-relaxed max-w-2xl mx-auto">{step.question}</p>
+                <p className="text-2xl md:text-3xl text-foreground/80 mb-12 leading-relaxed max-w-2xl mx-auto">{step.question}</p>
             </div>
-            
-            {existingSpace && (
-                <motion.div
-                    initial={{ opacity: 0, y: 20 }}
-                    animate={{ opacity: 1, y: 0 }}
-                    transition={{ delay: 0.3 }}
-                    className="crystal-card rounded-2xl p-6 mb-8 bg-emerald-500/10 border border-emerald-500/20"
-                >
-                    <h3 className="text-xl font-bold text-emerald-600 mb-2">
-                        ✨ Vous avez déjà un espace personnel !
-                    </h3>
-                    <p className="text-white/90 mb-4">
-                        Créé le {new Date(existingSpace.createdAt).toLocaleDateString('fr-FR')}
-                    </p>
-                    <Link to={`/mon-espace/${existingSpace.id}`}>
-                        <Button variant="outline" className="border-emerald-500 text-emerald-600 hover:bg-emerald-50">
-                            Accéder à mon espace
-                        </Button>
-                    </Link>
-                </motion.div>
-            )}
-            
             <div className="flex flex-col md:flex-row gap-6 justify-center">
                 <Button onClick={onNext} size="lg" className="bg-gradient-to-r from-emerald-500 to-teal-600 hover:from-emerald-600 hover:to-teal-700 text-white px-8 py-4 text-xl rounded-full shadow-lg energy-pulse">
                     Je compose ma journée <ArrowRight className="w-5 h-5 ml-2" />
@@ -155,7 +113,7 @@ const IntentionStep = ({ onSelect }) => {
         <motion.div key={step.id} initial={{ opacity: 0, x: 50 }} animate={{ opacity: 1, x: 0 }} exit={{ opacity: 0, x: -50 }} transition={{ duration: 0.5 }} className="w-full">
             <div className="text-center mb-10">
                 <h2 className="text-4xl md:text-5xl font-bold mb-4 aura-text font-['Dancing_Script']">{step.title}</h2>
-                <p className="text-xl text-white/90">{step.question}</p>
+                <p className="text-xl text-foreground/80">{step.question}</p>
             </div>
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
                 {step.options.map((option) => {
@@ -163,7 +121,7 @@ const IntentionStep = ({ onSelect }) => {
                     return (
                         <button key={option.value} onClick={() => onSelect(option.value)} className="crystal-card rounded-2xl p-6 text-center group cursor-pointer transition-all duration-300 hover:shadow-2xl hover:scale-105 border-2 border-transparent focus:outline-none focus:ring-2 focus:ring-primary focus:border-primary">
                             <Icon className="w-16 h-16 mx-auto mb-4 text-primary transition-transform duration-300 group-hover:scale-110" />
-                            <span className="text-xl font-semibold text-white">{option.label}</span>
+                            <span className="text-xl font-semibold text-foreground">{option.label}</span>
                         </button>
                     );
                 })}
@@ -189,7 +147,7 @@ const ExperienceStep = ({ intention, selectedExperiences, onExperienceChange }) 
                 <h2 className="text-4xl md:text-5xl font-bold mb-4 aura-text font-['Dancing_Script']">{step.title}</h2>
                 <div className="flex justify-center items-center gap-4">
                     <currentIntention.icon className="w-8 h-8 text-primary" />
-                    <p className="text-xl text-white/90">Pour votre intention de <span className="font-bold text-primary">{currentIntention.label.toLowerCase()}</span>, quelle forme prendra votre expérience ?</p>
+                    <p className="text-xl text-foreground/80">Pour votre intention de <span className="font-bold text-primary">{currentIntention.label.toLowerCase()}</span>, quelle forme prendra votre expérience ?</p>
                 </div>
             </div>
             <div className="space-y-4 mb-10">
@@ -238,9 +196,8 @@ const MyInnerJourneyPage = () => {
       setCurrentStepIndex(currentStepIndex + 1);
     } else {
       // Final step: navigate to results
-      navigate('/mon-voyage-interieur/resultats', { 
-        state: { journeyData: formData } 
-      });
+      console.log("Final form data:", formData);
+      // navigate('/mon-voyage-interieur/resultats'); // Example of final navigation
     }
   };
 
@@ -324,7 +281,7 @@ const MyInnerJourneyPage = () => {
                         Précédent
                     </Button>
                     <Button onClick={handleNext} size="lg" className="bg-gradient-to-r from-emerald-500 to-teal-600 hover:from-emerald-600 hover:to-teal-700 text-white" disabled={isNextDisabled()}>
-                        {currentStepIndex === journeySteps.length - 1 ? 'Voir mon récapitulatif' : 'Suivant'}
+                        {currentStepIndex === journeySteps.length - 1 ? '🚧 Voir les résultats' : 'Suivant'}
                         <ArrowRight className="w-5 h-5 ml-2" />
                     </Button>
                 </div>

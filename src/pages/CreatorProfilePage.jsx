@@ -90,20 +90,20 @@ const CreatorProfilePage = () => {
                 {creator.craft}
               </p>
               
-              <p className="text-lg text-white/90 leading-relaxed">
+              <p className="text-lg text-slate-600 leading-relaxed">
                 {creator.description}
               </p>
 
               <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
-                <div className="flex items-center space-x-3 text-white/80">
+                <div className="flex items-center space-x-3 text-slate-700">
                   <MapPin className="w-5 h-5 text-teal-500" />
                   <span>Atelier: {creator.commune}</span>
                 </div>
-                <div className="flex items-center space-x-3 text-white/80">
+                <div className="flex items-center space-x-3 text-slate-700">
                   <Euro className="w-5 h-5 text-green-500" />
                   <span>Tarifs: {creator.priceRange}</span>
                 </div>
-                <div className="flex items-center space-x-3 text-white/80">
+                <div className="flex items-center space-x-3 text-slate-700">
                   <Phone className="w-5 h-5 text-purple-500" />
                   <span>Contact: {creator.contact}</span>
                 </div>

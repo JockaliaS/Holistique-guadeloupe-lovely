@@ -15,7 +15,7 @@ const DirectoryGatePage = () => {
 
   const handleContinue = () => {
     if (charterAccepted) {
-      navigate('/annuaire');
+      navigate('/directory');
     } else {
       toast({
         variant: "destructive",
