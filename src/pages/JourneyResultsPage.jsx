@@ -154,7 +154,7 @@ const JourneyResultsPage = () => {
                   <p className={`text-2xl font-semibold ${currentIntention.color}`}>
                     {currentIntention.label}
                   </p>
-                  <p className="text-foreground/70">L'énergie qui guide votre parcours</p>
+                  <p className="text-white/80">L'énergie qui guide votre parcours</p>
                 </div>
               </div>
             </div>
@@ -174,7 +174,7 @@ const JourneyResultsPage = () => {
                       </h3>
                       <div className="flex flex-wrap gap-2">
                         {subcategories.map(subcategoryId => (
-                          <span key={subcategoryId} className="px-3 py-1 bg-primary/10 text-primary rounded-full text-sm">
+                          <span key={subcategoryId} className="px-3 py-1 bg-emerald-500/20 text-emerald-300 rounded-full text-sm">
                             {subcategoryId.replace(/_/g, ' ')}
                           </span>
                         ))}
@@ -193,7 +193,7 @@ const JourneyResultsPage = () => {
                     <Clock className="w-5 h-5 mr-2 text-primary" />
                     Durée
                   </h2>
-                  <p className="text-lg text-foreground/80">
+                  <p className="text-lg text-white/90">
                     {durationLabels[dataToShow.duration]}
                   </p>
                 </div>
@@ -205,7 +205,7 @@ const JourneyResultsPage = () => {
                     <MapPin className="w-5 h-5 mr-2 text-primary" />
                     Lieu d'Ambiance
                   </h2>
-                  <p className="text-lg text-foreground/80">
+                  <p className="text-lg text-white/90">
                     {locationLabels[dataToShow.location]}
                   </p>
                 </div>
@@ -216,7 +216,7 @@ const JourneyResultsPage = () => {
             <div className="border-t border-primary/20 pt-8">
               {!journeySpace ? (
                 <div className="text-center space-y-4">
-                  <p className="text-lg text-foreground/80 mb-6">
+                  <p className="text-lg text-white/90 mb-6">
                     Souhaitez-vous sauvegarder ce voyage dans votre espace personnel ?
                   </p>
                   <Button
@@ -247,7 +247,7 @@ const JourneyResultsPage = () => {
                     <p className="text-foreground/80 mb-4">
                       Votre voyage est sauvegardé et accessible à tout moment via vos cookies.
                     </p>
-                    <p className="text-sm text-foreground/60">
+                    <p className="text-sm text-white/70">
                       ID de votre espace : <code className="bg-background/50 px-2 py-1 rounded">{journeySpace.id}</code>
                     </p>
                   </div>
@@ -280,15 +280,14 @@ const JourneyResultsPage = () => {
                 Prochaines Étapes Suggérées
               </h2>
               <div className="space-y-3">
-                <p className="text-foreground/80">
-                  🌟 Explorez notre annuaire pour trouver les praticiens qui correspondent à votre intention
+                <p className="text-white/90">
+                  🌟 Basé sur votre intention de <strong>{currentIntention.label.toLowerCase()}</strong>, nous vous recommandons :
                 </p>
-                <p className="text-foreground/80">
-                  🎯 Prenez rendez-vous avec un thérapeute aligné à votre vibration
-                </p>
-                <p className="text-foreground/80">
-                  🎨 Découvrez les créations d'artistes qui nourrissent votre âme
-                </p>
+                <ul className="list-disc list-inside space-y-2 text-white/90 ml-4">
+                  <li>Des praticiens spécialisés dans votre domaine d'intention</li>
+                  <li>Des créateurs dont l'art résonne avec votre énergie</li>
+                  <li>Des lieux et expériences adaptés à votre durée souhaitée</li>
+                </ul>
               </div>
               
               <div className="flex flex-col sm:flex-row gap-3 mt-6">

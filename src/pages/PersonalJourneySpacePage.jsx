@@ -158,7 +158,7 @@ const PersonalJourneySpacePage = () => {
                   <p className={`text-2xl font-semibold ${currentIntention.color}`}>
                     {currentIntention.label}
                   </p>
-                  <p className="text-foreground/70">L'énergie qui guide mon parcours</p>
+                  <p className="text-white/80">L'énergie qui guide mon parcours</p>
                 </div>
               </div>
             </div>
@@ -178,7 +178,7 @@ const PersonalJourneySpacePage = () => {
                       </h3>
                       <div className="flex flex-wrap gap-2">
                         {subcategories.map(subcategoryId => (
-                          <span key={subcategoryId} className="px-3 py-1 bg-primary/10 text-primary rounded-full text-sm">
+                          <span key={subcategoryId} className="px-3 py-1 bg-emerald-500/20 text-emerald-300 rounded-full text-sm">
                             {subcategoryId.replace(/_/g, ' ')}
                           </span>
                         ))}
@@ -197,7 +197,7 @@ const PersonalJourneySpacePage = () => {
                     <Clock className="w-5 h-5 mr-2 text-primary" />
                     Durée Souhaitée
                   </h2>
-                  <p className="text-lg text-foreground/80">
+                  <p className="text-lg text-white/90">
                     {durationLabels[journeySpace.duration]}
                   </p>
                 </div>
@@ -209,7 +209,7 @@ const PersonalJourneySpacePage = () => {
                     <MapPin className="w-5 h-5 mr-2 text-primary" />
                     Lieu d'Ambiance
                   </h2>
-                  <p className="text-lg text-foreground/80">
+                  <p className="text-lg text-white/90">
                     {locationLabels[journeySpace.location]}
                   </p>
                 </div>
@@ -223,10 +223,10 @@ const PersonalJourneySpacePage = () => {
                 Suggestions Personnalisées
               </h2>
               <div className="space-y-3">
-                <p className="text-foreground/80">
+                <p className="text-white/90">
                   🌟 Basé sur votre intention de <strong>{currentIntention.label.toLowerCase()}</strong>, nous vous recommandons :
                 </p>
-                <ul className="list-disc list-inside space-y-2 text-foreground/80 ml-4">
+                <ul className="list-disc list-inside space-y-2 text-white/90 ml-4">
                   <li>Des praticiens spécialisés dans votre domaine d'intention</li>
                   <li>Des créateurs dont l'art résonne avec votre énergie</li>
                   <li>Des lieux et expériences adaptés à votre durée souhaitée</li>

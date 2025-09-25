@@ -72,7 +72,7 @@ const WelcomeStep = ({ onNext }) => {
         <motion.div key={step.id} initial={{ opacity: 0 }} animate={{ opacity: 1 }} exit={{ opacity: 0 }} transition={{ duration: 0.5 }} className="w-full text-center">
             <div className="text-center mb-10">
                 <h2 className="text-4xl md:text-5xl font-bold mb-4 aura-text font-['Dancing_Script']">{step.title}</h2>
-                <p className="text-2xl md:text-3xl text-foreground/80 mb-12 leading-relaxed max-w-2xl mx-auto">{step.question}</p>
+                <p className="text-2xl md:text-3xl text-white/90 mb-12 leading-relaxed max-w-2xl mx-auto">{step.question}</p>
             </div>
             
             {existingSpace && (
@@ -85,7 +85,7 @@ const WelcomeStep = ({ onNext }) => {
                     <h3 className="text-xl font-bold text-emerald-600 mb-2">
                         ✨ Vous avez déjà un espace personnel !
                     </h3>
-                    <p className="text-foreground/80 mb-4">
+                    <p className="text-white/90 mb-4">
                         Créé le {new Date(existingSpace.createdAt).toLocaleDateString('fr-FR')}
                     </p>
                     <Link to={`/mon-espace/${existingSpace.id}`}>
@@ -136,7 +136,7 @@ const IntentionStep = ({ onSelect }) => {
         <motion.div key={step.id} initial={{ opacity: 0, x: 50 }} animate={{ opacity: 1, x: 0 }} exit={{ opacity: 0, x: -50 }} transition={{ duration: 0.5 }} className="w-full">
             <div className="text-center mb-10">
                 <h2 className="text-4xl md:text-5xl font-bold mb-4 aura-text font-['Dancing_Script']">{step.title}</h2>
-                <p className="text-xl text-foreground/80">{step.question}</p>
+                <p className="text-xl text-white/90">{step.question}</p>
             </div>
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
                 {step.options.map((option) => {
@@ -144,7 +144,7 @@ const IntentionStep = ({ onSelect }) => {
                     return (
                         <button key={option.value} onClick={() => onSelect(option.value)} className="crystal-card rounded-2xl p-6 text-center group cursor-pointer transition-all duration-300 hover:shadow-2xl hover:scale-105 border-2 border-transparent focus:outline-none focus:ring-2 focus:ring-primary focus:border-primary">
                             <Icon className="w-16 h-16 mx-auto mb-4 text-primary transition-transform duration-300 group-hover:scale-110" />
-                            <span className="text-xl font-semibold text-foreground">{option.label}</span>
+                            <span className="text-xl font-semibold text-white">{option.label}</span>
                         </button>
                     );
                 })}
@@ -170,7 +170,7 @@ const ExperienceStep = ({ intention, selectedExperiences, onExperienceChange }) 
                 <h2 className="text-4xl md:text-5xl font-bold mb-4 aura-text font-['Dancing_Script']">{step.title}</h2>
                 <div className="flex justify-center items-center gap-4">
                     <currentIntention.icon className="w-8 h-8 text-primary" />
-                    <p className="text-xl text-foreground/80">Pour votre intention de <span className="font-bold text-primary">{currentIntention.label.toLowerCase()}</span>, quelle forme prendra votre expérience ?</p>
+                    <p className="text-xl text-white/90">Pour votre intention de <span className="font-bold text-primary">{currentIntention.label.toLowerCase()}</span>, quelle forme prendra votre expérience ?</p>
                 </div>
             </div>
             <div className="space-y-4 mb-10">
