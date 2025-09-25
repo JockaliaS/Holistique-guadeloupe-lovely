@@ -7,6 +7,7 @@ import React, { useState } from 'react';
     import { useToast } from '@/components/ui/use-toast';
     import { RadioGroup, RadioGroupItem } from '@/components/ui/radio-group';
     import { Label } from '@/components/ui/label';
+    import { UserPlus, Heart, Palette } from 'lucide-react';
 
     const RegistrationTypePage = () => {
       const [userType, setUserType] = useState(null);
@@ -65,8 +66,8 @@ import React, { useState } from 'react';
             <div className="text-left bg-background/30 p-6 rounded-xl border border-primary/20 shadow-inner mb-8">
               <h2 className="font-bold text-primary mb-2">Important :</h2>
               <ul className="list-disc list-inside space-y-2 text-foreground/90">
-                <li>L’inscription est <strong>gratuite</strong> pour les membres du cercle des gardiennes, reconnues et engagées dans la Charte Vibratoire du réseau.</li>
-                <li>Pour les nouveaux thérapeutes ou praticiens <strong>hors cercle</strong>, une participation financière est requise afin de valider l’inscription.</li>
+                <li>L'inscription est <strong>gratuite</strong> pour les membres du cercle des gardiennes, reconnues et engagées dans la Charte Vibratoire du réseau.</li>
+                <li>Pour les nouveaux thérapeutes ou praticiens <strong>hors cercle</strong>, une participation financière est requise afin de valider l'inscription.</li>
               </ul>
             </div>
 

@@ -5,6 +5,7 @@ import { BookOpen, Calendar, Sparkles } from 'lucide-react';
 import { Link } from 'react-router-dom';
 import { Button } from '@/components/ui/button';
 import { getAllBlogPosts } from '@/lib/database';
+import { useState, useEffect } from 'react';
 
 
 const BlogPage = () => {
