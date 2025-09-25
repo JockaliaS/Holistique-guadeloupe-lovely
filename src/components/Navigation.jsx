@@ -3,7 +3,7 @@ import { Link, NavLink } from 'react-router-dom';
 import { motion, AnimatePresence } from 'framer-motion';
 import { Sparkles, Menu, X, Home, BookOpen, Users, Feather, Heart, Compass, Palette, Shield } from 'lucide-react';
 import { Button } from '@/components/ui/button';
-import { getCurrentUser, isAdmin } from '@/lib/database';
+import { getCurrentUser, isAdmin } from '@/lib/admin';
 
 const Navigation = () => {
   const [isOpen, setIsOpen] = useState(false);
@@ -13,9 +13,9 @@ const Navigation = () => {
   const navItems = [
     { to: '/', text: 'Accueil', icon: Home },
     { to: '/mon-voyage-interieur', text: 'Mon Voyage Intérieur', icon: Compass },
-    { to: '/annuaire-gate', text: 'Thérapeutes', icon: Heart },
+    { to: '/directory-gate', text: 'Thérapeutes', icon: Heart },
     { to: '/artistes', text: 'Artistes', icon: Palette },
-    { to: '/rejoindre-aventure', text: 'Artiste Thérapeute', icon: Feather },
+    { to: '/therapist-charter', text: 'Devenir Praticien', icon: Feather },
     { to: '/eline-dracon', text: 'Éline Dracon', icon: Users },
     { to: '/blog', text: 'Blog', icon: BookOpen },
   ];

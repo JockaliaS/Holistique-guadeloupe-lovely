@@ -1,20 +1,23 @@
 import React, { useState, useEffect } from 'react';
 import { Helmet } from 'react-helmet';
 import { motion, AnimatePresence } from 'framer-motion';
-import { Shield, Users, Palette, BookOpen, Plus, FileEdit as Edit, Trash2, Eye, Search, Filter } from 'lucide-react';
+import { Shield, Users, Palette, BookOpen, Edit, Trash2, Eye, Search } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
 import { useToast } from '@/components/ui/use-toast';
-import { getAllTherapists, getAllArtists, getAllBlogPosts, deleteTherapist, deleteArtist, deleteBlogPost, getCurrentUser, isAdmin } from '@/lib/database';
+import { getAllTherapists, deleteTherapist } from '@/lib/therapists';
+import { getAllCreators, deleteCreator } from '@/lib/creators';
+import { getAllBlogPosts, deleteBlogPost } from '@/lib/blog';
+import { getCurrentUser, isAdmin } from '@/lib/admin';
 import { useNavigate, Link } from 'react-router-dom';
 
-const AdminDashboardPage = () => {
+const AdminPage = () => {
   const { toast } = useToast();
   const navigate = useNavigate();
   const [activeTab, setActiveTab] = useState('therapists');
   const [searchTerm, setSearchTerm] = useState('');
   const [therapists, setTherapists] = useState([]);
-  const [artists, setArtists] = useState([]);
+  const [creators, setCreators] = useState([]);
   const [blogPosts, setBlogPosts] = useState([]);
 
   useEffect(() => {
@@ -34,7 +37,7 @@ const AdminDashboardPage = () => {
 
   const loadData = () => {
     setTherapists(getAllTherapists());
-    setArtists(getAllArtists());
+    setCreators(getAllCreators());
     setBlogPosts(getAllBlogPosts());
   };
 
@@ -45,8 +48,8 @@ const AdminDashboardPage = () => {
           case 'therapist':
             deleteTherapist(id);
             break;
-          case 'artist':
-            deleteArtist(id);
+          case 'creator':
+            deleteCreator(id);
             break;
           case 'blog':
             deleteBlogPost(id);
@@ -181,7 +184,7 @@ const AdminDashboardPage = () => {
     <div className="pt-16 min-h-screen">
       <Helmet>
         <title>Administration - Terra Nova</title>
-        <meta name="description" content="Interface d'administration pour gérer les thérapeutes, artistes et contenus de Terra Nova." />
+        <meta name="description" content="Interface d'administration pour gérer les thérapeutes, créateurs et contenus de Terra Nova." />
       </Helmet>
 
       <section className="py-16 mystical-gradient">
@@ -207,7 +210,6 @@ const AdminDashboardPage = () => {
       <section className="py-12">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="flex flex-col lg:flex-row gap-8">
-            {/* Sidebar */}
             <div className="lg:w-80 space-y-4">
               <TabButton 
                 id="therapists" 
@@ -216,10 +218,10 @@ const AdminDashboardPage = () => {
                 count={therapists.length}
               />
               <TabButton 
-                id="artists" 
-                label="Artistes" 
+                id="creators" 
+                label="Créateurs" 
                 icon={Palette} 
-                count={artists.length}
+                count={creators.length}
               />
               <TabButton 
                 id="blog" 
@@ -229,26 +231,16 @@ const AdminDashboardPage = () => {
               />
             </div>
 
-            {/* Main Content */}
             <div className="flex-1 space-y-6">
-              <div className="flex flex-col sm:flex-row gap-4 justify-between items-start sm:items-center">
-                <div className="relative flex-1 max-w-md">
-                  <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 text-muted-foreground w-5 h-5" />
-                  <Input
-                    type="text"
-                    placeholder="Rechercher..."
-                    value={searchTerm}
-                    onChange={(e) => setSearchTerm(e.target.value)}
-                    className="pl-10"
-                  />
-                </div>
-                <Button 
-                  onClick={() => toast({ title: "🚧 Création", description: "Fonctionnalité en développement" })}
-                  className="bg-gradient-to-r from-emerald-500 to-teal-600 text-white"
-                >
-                  <Plus className="w-4 h-4 mr-2" />
-                  Créer
-                </Button>
+              <div className="relative max-w-md">
+                <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 text-muted-foreground w-5 h-5" />
+                <Input
+                  type="text"
+                  placeholder="Rechercher..."
+                  value={searchTerm}
+                  onChange={(e) => setSearchTerm(e.target.value)}
+                  className="pl-10"
+                />
               </div>
 
               <AnimatePresence mode="wait">
@@ -264,15 +256,15 @@ const AdminDashboardPage = () => {
                   </motion.div>
                 )}
 
-                {activeTab === 'artists' && (
+                {activeTab === 'creators' && (
                   <motion.div
-                    key="artists"
+                    key="creators"
                     initial={{ opacity: 0, x: 20 }}
                     animate={{ opacity: 1, x: 0 }}
                     exit={{ opacity: 0, x: -20 }}
                     transition={{ duration: 0.3 }}
                   >
-                    <DataTable data={filteredData(artists)} type="artist" />
+                    <DataTable data={filteredData(creators)} type="creator" />
                   </motion.div>
                 )}
 
@@ -296,4 +288,4 @@ const AdminDashboardPage = () => {
   );
 };
 
-export default AdminDashboardPage;
+export default AdminPage;

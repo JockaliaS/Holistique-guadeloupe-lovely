@@ -146,7 +146,7 @@ const CreationsDirectoryPage = () => {
                   <div className="mt-auto">
                     <Button
                       onClick={() => contactCreator(creator)}
-                      className="w-full bg-gradient-to-r from-element-bois to-element-eau hover:from-element-bois/90 hover:to-element-eau/90 text-white px-4 py-2 rounded-full"
+                      className="w-full bg-gradient-to-r from-emerald-500 to-teal-600 hover:from-emerald-600 hover:to-teal-700 text-white px-4 py-2 rounded-full"
                     >
                       <Mail className="w-4 h-4 mr-2" />
                       Contacter
@@ -174,7 +174,7 @@ const CreationsDirectoryPage = () => {
               </p>
               <Button
                 onClick={clearFilters}
-                className="bg-gradient-to-r from-element-bois to-element-eau text-white px-6 py-3 rounded-full"
+                className="bg-gradient-to-r from-emerald-500 to-teal-600 text-white px-6 py-3 rounded-full"
               >
                 Voir toutes les créations
               </Button>

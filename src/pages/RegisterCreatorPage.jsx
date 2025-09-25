@@ -2,16 +2,15 @@ import React, { useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { Helmet } from 'react-helmet';
 import { useNavigate } from 'react-router-dom';
-import { Palette, Heart, Type, Image as ImageIcon, UserCheck, Compass, MessageSquare, ChevronDown, Euro, Brush } from 'lucide-react';
+import { Palette, UserCheck, ChevronDown, Euro } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
 import { Label } from '@/components/ui/label';
 import { Textarea } from '@/components/ui/textarea';
 import { useToast } from '@/components/ui/use-toast';
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@/components/ui/select';
-import { Checkbox } from '@/components/ui/checkbox';
 import { cn } from '@/lib/utils';
-import { addArtist } from '@/lib/database';
+import { addCreator } from '@/lib/creators';
 
 const guadeloupeCommunes = [
   "Les Abymes", "Anse-Bertrand", "Baie-Mahault", "Baillif", "Basse-Terre",
@@ -28,7 +27,7 @@ const categories = [
   "Musique", "Danse", "Écriture", "Artisanat", "Autre"
 ];
 
-const RegisterArtistPage = () => {
+const RegisterCreatorPage = () => {
   const { toast } = useToast();
   const navigate = useNavigate();
   const [openSection, setOpenSection] = useState('identity');
@@ -39,33 +38,12 @@ const RegisterArtistPage = () => {
     craft: '',
     description: '',
     category: '',
-    techniques: [],
     priceRange: '',
-    portraitPhoto: null,
-    portfolioImages: [],
+    image: '',
   });
 
   const handleSectionToggle = (sectionId) => {
     setOpenSection(openSection === sectionId ? null : sectionId);
-  };
-
-  const handleFileChange = (e) => {
-    const { name, files } = e.target;
-    if (files.length > 0) {
-      const file = files[0];
-      const reader = new FileReader();
-      reader.onloadend = () => {
-        if (name === 'portfolioImages') {
-          setFormData(prev => ({ 
-            ...prev, 
-            portfolioImages: [...prev.portfolioImages, reader.result] 
-          }));
-        } else {
-          setFormData(prev => ({ ...prev, [name]: reader.result }));
-        }
-      };
-      reader.readAsDataURL(file);
-    }
   };
 
   const handleChange = (e) => {
@@ -77,43 +55,26 @@ const RegisterArtistPage = () => {
     setFormData(prev => ({ ...prev, [name]: value }));
   };
 
-  const handleTechniqueChange = (technique, checked) => {
-    setFormData(prev => {
-      const newTechniques = checked 
-        ? [...prev.techniques, technique]
-        : prev.techniques.filter(t => t !== technique);
-      return { ...prev, techniques: newTechniques };
-    });
-  };
-
-  const removePortfolioImage = (index) => {
-    setFormData(prev => ({
-      ...prev,
-      portfolioImages: prev.portfolioImages.filter((_, i) => i !== index)
-    }));
-  };
-
   const handleSubmit = (e) => {
     e.preventDefault();
     
-    if (!formData.portraitPhoto) {
+    if (!formData.image) {
       toast({ 
         variant: "destructive", 
-        title: "Photo manquante", 
-        description: "Veuillez télécharger une photo portrait." 
+        title: "Image manquante", 
+        description: "Veuillez ajouter une URL d'image." 
       });
       return;
     }
 
-    const newArtist = addArtist(formData);
+    const newCreator = addCreator(formData);
 
     toast({
-      title: "🎨 Fiche Artiste Créée !",
-      description: `Votre espace personnel: /espace/${newArtist.personalSpaceId}`,
+      title: "🎨 Fiche Créateur Créée !",
+      description: `Votre espace personnel: /espace/${newCreator.personalSpaceId}`,
     });
     
-    // Rediriger vers l'espace personnel
-    navigate(`/espace/${newArtist.personalSpaceId}`);
+    navigate(`/espace/${newCreator.personalSpaceId}`);
   };
 
   const Section = ({ id, title, icon: Icon, children }) => (
@@ -143,19 +104,11 @@ const RegisterArtistPage = () => {
     </div>
   );
 
-  const commonTechniques = {
-    "Peinture": ["Acrylique", "Aquarelle", "Huile", "Techniques mixtes", "Peinture numérique"],
-    "Sculpture": ["Argile", "Bois", "Pierre", "Métal", "Résine"],
-    "Bijoux": ["Métaux précieux", "Perles", "Pierres naturelles", "Macramé", "Résine"],
-    "Tissage": ["Macramé", "Tissage traditionnel", "Fibres naturelles", "Broderie", "Tapisserie"],
-    "Poterie": ["Tournage", "Modelage", "Raku", "Grès", "Faïence"]
-  };
-
   return (
     <div className="pt-16 min-h-screen">
       <Helmet>
-        <title>Inscription Artiste - Terra Nova</title>
-        <meta name="description" content="Créez votre fiche artiste et rejoignez notre communauté de créateurs en Guadeloupe." />
+        <title>Inscription Créateur - Terra Nova</title>
+        <meta name="description" content="Créez votre fiche créateur et rejoignez notre communauté d'artisans en Guadeloupe." />
       </Helmet>
 
       <section className="py-16 mystical-gradient">
@@ -165,7 +118,7 @@ const RegisterArtistPage = () => {
             <h1 className="text-4xl md:text-6xl font-bold">
               <span className="aura-text font-['Dancing_Script']">Mon Art, Ma Signature</span>
             </h1>
-            <p className="text-xl text-foreground/80 mt-4">(Créez votre fiche artiste)</p>
+            <p className="text-xl text-foreground/80 mt-4">(Créez votre fiche créateur)</p>
           </motion.div>
         </div>
       </section>
@@ -182,7 +135,7 @@ const RegisterArtistPage = () => {
             <Section id="identity" title="Identité & Contact" icon={UserCheck}>
               <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                 <div>
-                  <Label htmlFor="name" className="font-semibold text-lg">Nom d'Artiste*</Label>
+                  <Label htmlFor="name" className="font-semibold text-lg">Nom de Créateur*</Label>
                   <Input id="name" name="name" value={formData.name} onChange={handleChange} required />
                 </div>
                 <div>
@@ -197,9 +150,8 @@ const RegisterArtistPage = () => {
                   <Input id="contact" name="contact" value={formData.contact} onChange={handleChange} required />
                 </div>
                 <div>
-                  <Label htmlFor="portraitPhoto" className="font-semibold text-lg">Photo portrait*</Label>
-                  <Input id="portraitPhoto" name="portraitPhoto" type="file" accept="image/*" onChange={handleFileChange} required />
-                  {formData.portraitPhoto && <img src={formData.portraitPhoto} alt="Aperçu" className="mt-2 rounded-lg w-32 h-32 object-cover"/>}
+                  <Label htmlFor="image" className="font-semibold text-lg">URL de l'image*</Label>
+                  <Input id="image" name="image" value={formData.image} onChange={handleChange} placeholder="https://..." required />
                 </div>
               </div>
             </Section>
@@ -208,7 +160,7 @@ const RegisterArtistPage = () => {
               <div className="space-y-6">
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                   <div>
-                    <Label htmlFor="craft" className="font-semibold text-lg">Spécialité artistique*</Label>
+                    <Label htmlFor="craft" className="font-semibold text-lg">Spécialité créative*</Label>
                     <Input id="craft" name="craft" value={formData.craft} onChange={handleChange} placeholder="Ex: Peinture Vibratoire & Talismans" required />
                   </div>
                   <div>
@@ -230,73 +182,13 @@ const RegisterArtistPage = () => {
                   <Label htmlFor="priceRange" className="font-semibold text-lg">Gamme de prix</Label>
                   <Input id="priceRange" name="priceRange" value={formData.priceRange} onChange={handleChange} placeholder="Ex: 50€ - 500€" />
                 </div>
-
-                {formData.category && commonTechniques[formData.category] && (
-                  <div>
-                    <Label className="font-semibold text-lg">Techniques maîtrisées</Label>
-                    <div className="grid grid-cols-2 md:grid-cols-3 gap-3 mt-2">
-                      {commonTechniques[formData.category].map(technique => (
-                        <div key={technique} className="flex items-center space-x-2">
-                          <Checkbox 
-                            id={`technique-${technique}`}
-                            checked={formData.techniques.includes(technique)}
-                            onCheckedChange={(checked) => handleTechniqueChange(technique, checked)}
-                          />
-                          <Label htmlFor={`technique-${technique}`} className="text-sm cursor-pointer">
-                            {technique}
-                          </Label>
-                        </div>
-                      ))}
-                    </div>
-                  </div>
-                )}
-              </div>
-            </Section>
-
-            <Section id="portfolio" title="Portfolio" icon={ImageIcon}>
-              <div className="space-y-6">
-                <div>
-                  <Label htmlFor="portfolioImages" className="font-semibold text-lg">Images de vos créations</Label>
-                  <p className="text-sm text-foreground/70 italic">Ajoutez jusqu'à 6 images de vos œuvres.</p>
-                  <Input 
-                    id="portfolioImages" 
-                    name="portfolioImages" 
-                    type="file" 
-                    accept="image/*" 
-                    onChange={handleFileChange}
-                    disabled={formData.portfolioImages.length >= 6}
-                  />
-                </div>
-                
-                {formData.portfolioImages.length > 0 && (
-                  <div className="grid grid-cols-2 md:grid-cols-3 gap-4">
-                    {formData.portfolioImages.map((image, index) => (
-                      <div key={index} className="relative">
-                        <img 
-                          src={image} 
-                          alt={`Portfolio ${index + 1}`}
-                          className="w-full h-32 object-cover rounded-lg"
-                        />
-                        <Button
-                          type="button"
-                          onClick={() => removePortfolioImage(index)}
-                          size="sm"
-                          variant="destructive"
-                          className="absolute top-2 right-2 w-6 h-6 p-0"
-                        >
-                          ×
-                        </Button>
-                      </div>
-                    ))}
-                  </div>
-                )}
               </div>
             </Section>
 
             <div className="text-center pt-8 border-t border-primary/20">
               <Button type="submit" className="bg-gradient-to-r from-purple-500 to-pink-500 text-white px-8 py-4 text-lg rounded-full shadow-lg hover:shadow-xl transition-all duration-300">
                 <Palette className="w-5 h-5 mr-3" />
-                Créer ma fiche artiste 🎨
+                Créer ma fiche créateur 🎨
               </Button>
             </div>
           </motion.form>
@@ -306,4 +198,4 @@ const RegisterArtistPage = () => {
   );
 };
 
-export default RegisterArtistPage;
+export default RegisterCreatorPage;

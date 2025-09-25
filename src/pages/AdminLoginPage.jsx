@@ -7,7 +7,7 @@ import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
 import { Label } from '@/components/ui/label';
 import { useToast } from '@/components/ui/use-toast';
-import { getAdminUser, setCurrentUser } from '@/lib/database';
+import { getAdminUser, setCurrentUser } from '@/lib/admin';
 
 const AdminLoginPage = () => {
   const { toast } = useToast();

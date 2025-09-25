@@ -8,7 +8,8 @@ import { Input } from '@/components/ui/input';
 import { Label } from '@/components/ui/label';
 import { Textarea } from '@/components/ui/textarea';
 import { useToast } from '@/components/ui/use-toast';
-import { getTherapistBySpaceId, getArtistBySpaceId, updateTherapist, updateArtist } from '@/lib/database';
+import { getTherapistBySpaceId, updateTherapist } from '@/lib/therapists';
+import { getCreatorBySpaceId, updateCreator } from '@/lib/creators';
 
 const PersonalSpacePage = () => {
   const { spaceId } = useParams();
@@ -21,13 +22,16 @@ const PersonalSpacePage = () => {
   useEffect(() => {
     // Chercher d'abord dans les thérapeutes
     let foundPerson = getTherapistBySpaceId(spaceId);
+    let personType = 'therapist';
+    
     if (!foundPerson) {
-      // Puis dans les artistes
-      foundPerson = getArtistBySpaceId(spaceId);
+      // Puis dans les créateurs
+      foundPerson = getCreatorBySpaceId(spaceId);
+      personType = 'creator';
     }
 
     if (foundPerson) {
-      setPerson(foundPerson);
+      setPerson({ ...foundPerson, type: personType });
       setFormData(foundPerson);
     } else {
       toast({
@@ -49,8 +53,8 @@ const PersonalSpacePage = () => {
       if (person.type === 'therapist') {
         const updated = updateTherapist(person.id, formData);
         setPerson(updated);
-      } else if (person.type === 'artist') {
-        const updated = updateArtist(person.id, formData);
+      } else if (person.type === 'creator') {
+        const updated = updateCreator(person.id, formData);
         setPerson(updated);
       }
       
@@ -82,6 +86,7 @@ const PersonalSpacePage = () => {
   }
 
   const isTherapist = person.type === 'therapist';
+  const isCreator = person.type === 'creator';
 
   return (
     <div className="pt-16 min-h-screen">
@@ -117,7 +122,7 @@ const PersonalSpacePage = () => {
           <div className="crystal-card rounded-3xl p-8 md:p-12">
             <div className="flex justify-between items-center mb-8">
               <h2 className="text-3xl font-bold aura-text font-['Dancing_Script']">
-                Ma Fiche {isTherapist ? 'Thérapeute' : 'Artiste'}
+                Ma Fiche {isTherapist ? 'Thérapeute' : 'Créateur'}
               </h2>
               <div className="flex gap-3">
                 <Button
@@ -200,7 +205,7 @@ const PersonalSpacePage = () => {
                   </div>
                 ) : (
                   <div>
-                    <Label htmlFor="craft" className="text-lg font-semibold">Spécialité artistique</Label>
+                    <Label htmlFor="craft" className="text-lg font-semibold">Spécialité créative</Label>
                     {isEditing ? (
                       <Input
                         id="craft"
@@ -297,11 +302,11 @@ const PersonalSpacePage = () => {
                     <Input
                       id="contact"
                       name={isTherapist ? "relianceDirecte" : "contact"}
-                      value={formData[isTherapist ? "relianceDirecte" : "contact"] || ''}
+                      value={formData[isTherapist ? "phone" : "contact"] || ''}
                       onChange={handleChange}
                     />
                   ) : (
-                    <p className="text-foreground/80">{isTherapist ? person.relianceDirecte : person.contact}</p>
+                    <p className="text-foreground/80">{isTherapist ? person.phone : person.contact}</p>
                   )}
                 </div>
               </div>

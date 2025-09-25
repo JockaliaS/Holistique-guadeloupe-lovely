@@ -5,7 +5,7 @@ import { Helmet } from 'react-helmet';
 import { ArrowLeft, Star, Heart, Phone, Globe, MapPin, Calendar, Sun, Wind, Droplets, Mountain, Star as StarIcon, FileEdit as Edit } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { useToast } from '@/components/ui/use-toast';
-import { getTherapistById } from '@/lib/database';
+import { getTherapistById } from '@/lib/therapists';
 import { experienceCategories } from '@/lib/journeyData';
 
 const elementConfig = {
@@ -34,6 +34,7 @@ const TherapistProfile = () => {
   
   const handleManageProfile = () => {
     localStorage.setItem('loggedInUserId', therapist.id);
+    localStorage.setItem('loggedInUserType', 'therapist');
     toast({
       title: `Bienvenue, ${therapist.name} !`,
       description: "Vous êtes maintenant connecté(e) et pouvez gérer votre fiche.",
@@ -126,12 +127,12 @@ const TherapistProfile = () => {
                 </div>
                 <div className="flex items-center space-x-3 text-slate-700">
                   <Phone className="w-5 h-5 text-purple-500" />
-                  <span>Reliance directe: {therapist.relianceDirecte}</span>
+                  <span>Téléphone: {therapist.phone}</span>
                 </div>
-                {therapist.presenceInspirante && (
+                {therapist.website && (
                   <div className="flex items-center space-x-3 text-slate-700">
                     <Globe className="w-5 h-5 text-cyan-500" />
-                    <span>Présence inspirante: {therapist.presenceInspirante}</span>
+                    <span>Site web: {therapist.website}</span>
                   </div>
                 )}
               </div>

@@ -1,17 +1,15 @@
 import React, { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
-import { motion, AnimatePresence } from 'framer-motion';
+import { motion } from 'framer-motion';
 import { Helmet } from 'react-helmet';
-import { Palette, Heart, Type, Image as ImageIcon, UserCheck, Compass, MessageSquare, Save, ChevronDown } from 'lucide-react';
+import { Palette, Save } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
 import { Label } from '@/components/ui/label';
 import { Textarea } from '@/components/ui/textarea';
 import { useToast } from '@/components/ui/use-toast';
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@/components/ui/select';
-import { getArtistById, updateArtist } from '@/lib/database';
-import { cn } from '@/lib/utils';
-import { Checkbox } from '@/components/ui/checkbox';
+import { getCreatorById, updateCreator } from '@/lib/creators';
 
 const guadeloupeCommunes = [
   "Les Abymes", "Anse-Bertrand", "Baie-Mahault", "Baillif", "Basse-Terre",
@@ -28,41 +26,38 @@ const categories = [
   "Musique", "Danse", "Écriture", "Artisanat", "Autre"
 ];
 
-const EditArtistProfilePage = () => {
+const EditCreatorProfilePage = () => {
   const { toast } = useToast();
   const navigate = useNavigate();
-  const [artist, setArtist] = useState(null);
+  const [creator, setCreator] = useState(null);
   const [formData, setFormData] = useState(null);
-  const [openSection, setOpenSection] = useState(null);
 
   useEffect(() => {
     const loggedInUserId = localStorage.getItem('loggedInUserId');
     const userType = localStorage.getItem('loggedInUserType');
     
-    if (!loggedInUserId || userType !== 'artist') {
+    if (!loggedInUserId || userType !== 'creator') {
       toast({ 
         variant: "destructive", 
         title: "Accès non autorisé", 
-        description: "Vous devez être connecté en tant qu'artiste pour modifier un profil." 
+        description: "Vous devez être connecté en tant que créateur pour modifier un profil." 
       });
       navigate('/');
       return;
     }
 
-    const artistData = getArtistById(parseInt(loggedInUserId));
-    if (artistData) {
-      setArtist(artistData);
+    const creatorData = getCreatorById(parseInt(loggedInUserId));
+    if (creatorData) {
+      setCreator(creatorData);
       setFormData({
-        name: artistData.name || '',
-        commune: artistData.commune || '',
-        contact: artistData.contact || '',
-        craft: artistData.craft || '',
-        description: artistData.description || '',
-        category: artistData.category || '',
-        techniques: artistData.techniques || [],
-        priceRange: artistData.priceRange || '',
-        portraitPhoto: artistData.image || null,
-        portfolioImages: artistData.portfolioImages || [],
+        name: creatorData.name || '',
+        commune: creatorData.commune || '',
+        contact: creatorData.contact || '',
+        craft: creatorData.craft || '',
+        description: creatorData.description || '',
+        category: creatorData.category || '',
+        priceRange: creatorData.priceRange || '',
+        image: creatorData.image || '',
       });
     } else {
       toast({ 
@@ -83,53 +78,25 @@ const EditArtistProfilePage = () => {
     setFormData(prev => ({ ...prev, [name]: value }));
   };
 
-  const handleSectionToggle = (sectionId) => {
-    setOpenSection(openSection === sectionId ? null : sectionId);
-  };
-
-  const handleTechniqueChange = (technique, checked) => {
-    setFormData(prev => {
-      const newTechniques = checked 
-        ? [...prev.techniques, technique]
-        : prev.techniques.filter(t => t !== technique);
-      return { ...prev, techniques: newTechniques };
-    });
-  };
-
   const handleSubmit = (e) => {
     e.preventDefault();
-    updateArtist(artist.id, formData);
+    updateCreator(creator.id, formData);
     toast({
-      title: "🎨 Profil Mis à Jour !",
-      description: "Votre fiche artiste a été mise à jour avec succès.",
+      title: "🎨 Profil Créateur Mis à Jour !",
+      description: "Votre fiche créateur a été mise à jour avec succès.",
     });
-    navigate(`/artiste/${artist.id}`);
+    navigate(`/artiste/${creator.id}`);
   };
 
   if (!formData) {
     return <div className="pt-24 min-h-screen flex items-center justify-center">Chargement de votre espace...</div>;
   }
 
-  const SectionTitle = ({ icon: Icon, children }) => (
-    <div className="flex items-center text-2xl font-bold font-['Dancing_Script'] aura-text">
-      <Icon className="w-6 h-6 mr-3 text-primary" />
-      {children}
-    </div>
-  );
-
-  const commonTechniques = {
-    "Peinture": ["Acrylique", "Aquarelle", "Huile", "Techniques mixtes", "Peinture numérique"],
-    "Sculpture": ["Argile", "Bois", "Pierre", "Métal", "Résine"],
-    "Bijoux": ["Métaux précieux", "Perles", "Pierres naturelles", "Macramé", "Résine"],
-    "Tissage": ["Macramé", "Tissage traditionnel", "Fibres naturelles", "Broderie", "Tapisserie"],
-    "Poterie": ["Tournage", "Modelage", "Raku", "Grès", "Faïence"]
-  };
-
   return (
     <div className="pt-16 min-h-screen">
       <Helmet>
-        <title>Modifier ma Fiche Artiste - {artist?.name}</title>
-        <meta name="description" content="Modifiez votre fiche artiste sur Terra Nova." />
+        <title>Modifier ma Fiche Créateur - {creator?.name}</title>
+        <meta name="description" content="Modifiez votre fiche créateur sur Terra Nova." />
       </Helmet>
 
       <section className="py-16 mystical-gradient">
@@ -138,7 +105,7 @@ const EditArtistProfilePage = () => {
             <h1 className="text-4xl md:text-6xl font-bold">
               <span className="aura-text font-['Dancing_Script']">Modifier mon art</span>
             </h1>
-            <p className="text-xl text-foreground/80 mt-4">Faites rayonner votre nouvelle création, {artist?.name}.</p>
+            <p className="text-xl text-foreground/80 mt-4">Faites rayonner votre nouvelle création, {creator?.name}.</p>
           </motion.div>
         </div>
       </section>
@@ -150,26 +117,26 @@ const EditArtistProfilePage = () => {
             initial={{ opacity: 0, y: 30 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8, delay: 0.2 }}
-            className="crystal-card rounded-3xl p-8 md:p-12 space-y-12"
+            className="crystal-card rounded-3xl p-8 md:p-12 space-y-8"
           >
             <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
               <div className="space-y-2">
-                <Label htmlFor="name" className="font-['Dancing_Script'] aura-text text-3xl">Nom d'Artiste</Label>
+                <Label htmlFor="name" className="font-['Dancing_Script'] aura-text text-2xl">Nom de Créateur</Label>
                 <Input id="name" name="name" value={formData.name} onChange={handleChange} required />
               </div>
               <div className="space-y-2">
-                <Label htmlFor="commune" className="font-['Dancing_Script'] aura-text text-3xl">Commune</Label>
+                <Label htmlFor="commune" className="font-['Dancing_Script'] aura-text text-2xl">Commune</Label>
                 <Select onValueChange={(value) => handleSelectChange('commune', value)} value={formData.commune}>
                   <SelectTrigger><SelectValue /></SelectTrigger>
                   <SelectContent>{guadeloupeCommunes.sort().map(c => <SelectItem key={c} value={c}>{c}</SelectItem>)}</SelectContent>
                 </Select>
               </div>
               <div className="space-y-2">
-                <Label htmlFor="contact" className="font-['Dancing_Script'] aura-text text-3xl">Contact</Label>
+                <Label htmlFor="contact" className="font-['Dancing_Script'] aura-text text-2xl">Contact</Label>
                 <Input id="contact" name="contact" value={formData.contact} onChange={handleChange} />
               </div>
               <div className="space-y-2">
-                <Label htmlFor="category" className="font-['Dancing_Script'] aura-text text-3xl">Catégorie</Label>
+                <Label htmlFor="category" className="font-['Dancing_Script'] aura-text text-2xl">Catégorie</Label>
                 <Select onValueChange={(value) => handleSelectChange('category', value)} value={formData.category}>
                   <SelectTrigger><SelectValue /></SelectTrigger>
                   <SelectContent>{categories.map(c => <SelectItem key={c} value={c}>{c}</SelectItem>)}</SelectContent>
@@ -178,39 +145,24 @@ const EditArtistProfilePage = () => {
             </div>
 
             <div className="space-y-2">
-              <SectionTitle icon={Palette}>Ma spécialité artistique</SectionTitle>
+              <Label htmlFor="craft" className="font-['Dancing_Script'] aura-text text-2xl">Ma spécialité créative</Label>
               <Input id="craft" name="craft" value={formData.craft} onChange={handleChange} required />
             </div>
             
             <div className="space-y-2">
-              <SectionTitle icon={Heart}>Description de mon art</SectionTitle>
+              <Label htmlFor="description" className="font-['Dancing_Script'] aura-text text-2xl">Description de mon art</Label>
               <Textarea id="description" name="description" value={formData.description} onChange={handleChange} rows={4} required />
             </div>
 
             <div className="space-y-2">
-              <SectionTitle icon={Type}>Gamme de prix</SectionTitle>
+              <Label htmlFor="priceRange" className="font-['Dancing_Script'] aura-text text-2xl">Gamme de prix</Label>
               <Input id="priceRange" name="priceRange" value={formData.priceRange} onChange={handleChange} />
             </div>
 
-            {formData.category && commonTechniques[formData.category] && (
-              <div className="space-y-4">
-                <SectionTitle icon={Compass}>Techniques maîtrisées</SectionTitle>
-                <div className="grid grid-cols-2 md:grid-cols-3 gap-3">
-                  {commonTechniques[formData.category].map(technique => (
-                    <div key={technique} className="flex items-center space-x-2">
-                      <Checkbox 
-                        id={`edit-technique-${technique}`}
-                        checked={formData.techniques.includes(technique)}
-                        onCheckedChange={(checked) => handleTechniqueChange(technique, checked)}
-                      />
-                      <Label htmlFor={`edit-technique-${technique}`} className="text-sm cursor-pointer">
-                        {technique}
-                      </Label>
-                    </div>
-                  ))}
-                </div>
-              </div>
-            )}
+            <div className="space-y-2">
+              <Label htmlFor="image" className="font-['Dancing_Script'] aura-text text-2xl">URL de l'image</Label>
+              <Input id="image" name="image" value={formData.image} onChange={handleChange} placeholder="https://..." />
+            </div>
 
             <div className="text-center pt-8 border-t border-primary/20">
               <Button type="submit" className="bg-gradient-to-r from-purple-500 to-pink-500 text-white px-8 py-4 text-lg rounded-full shadow-lg hover:shadow-xl transition-all duration-300">
@@ -225,4 +177,4 @@ const EditArtistProfilePage = () => {
   );
 };
 
-export default EditArtistProfilePage;
+export default EditCreatorProfilePage;

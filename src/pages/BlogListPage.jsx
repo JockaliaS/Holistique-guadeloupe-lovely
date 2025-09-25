@@ -1,19 +1,18 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import { Helmet } from 'react-helmet';
 import { motion } from 'framer-motion';
 import { BookOpen, Calendar, Sparkles } from 'lucide-react';
 import { Link } from 'react-router-dom';
 import { Button } from '@/components/ui/button';
-import { getAllBlogPosts } from '@/lib/database';
-import { useState, useEffect } from 'react';
+import { getAllBlogPosts } from '@/lib/blog';
 
-
-const BlogPage = () => {
+const BlogListPage = () => {
   const [blogPosts, setBlogPosts] = useState([]);
 
   useEffect(() => {
     setBlogPosts(getAllBlogPosts());
   }, []);
+
   return (
     <div className="pt-16 min-h-screen">
       <Helmet>
@@ -88,7 +87,7 @@ const BlogPage = () => {
             <p className="text-xl text-foreground/80 max-w-2xl mx-auto mb-6">
               Chaque semaine, une nouvelle inspiration pour votre âme.
             </p>
-            <Button className="bg-gradient-to-r from-element-feu to-orange-600 text-white px-8 py-4 text-lg rounded-full shadow-lg">
+            <Button className="bg-gradient-to-r from-red-500 to-orange-600 text-white px-8 py-4 text-lg rounded-full shadow-lg">
               <Sparkles className="w-5 h-5 mr-2" /> S'abonner aux Lettres de l'Âme
             </Button>
           </motion.div>
@@ -98,4 +97,4 @@ const BlogPage = () => {
   );
 };
 
-export default BlogPage;
+export default BlogListPage;

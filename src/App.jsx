@@ -4,23 +4,20 @@ import { Helmet } from 'react-helmet';
 import Navigation from '@/components/Navigation';
 import HomePage from '@/pages/HomePage';
 import QuizPage from '@/pages/QuizPage';
-import DirectoryPage from '@/pages/DirectoryPage';
-import ArtistsDirectoryPage from '@/pages/ArtistsDirectoryPage';
-import ArtistProfilePage from '@/pages/ArtistProfilePage';
-import RegisterArtistPage from '@/pages/RegisterArtistPage';
-import EditArtistProfilePage from '@/pages/EditArtistProfilePage';
-import AdminDashboardPage from '@/pages/AdminDashboardPage';
+import TherapistsDirectoryPage from '@/pages/TherapistsDirectoryPage';
+import CreatorsDirectoryPage from '@/pages/CreatorsDirectoryPage';
+import CreatorProfilePage from '@/pages/CreatorProfilePage';
+import RegisterCreatorPage from '@/pages/RegisterCreatorPage';
+import EditCreatorProfilePage from '@/pages/EditCreatorProfilePage';
+import AdminPage from '@/pages/AdminPage';
 import AdminLoginPage from '@/pages/AdminLoginPage';
 import PersonalSpacePage from '@/pages/PersonalSpacePage';
 import ElinePage from '@/pages/ElinePage';
 import TherapistProfile from '@/pages/TherapistProfile';
 import RegisterTherapistPage from '@/pages/RegisterTherapistPage';
-import BlogPage from '@/pages/BlogPage';
-import FormesEtFrequencesPage from '@/pages/blog/FormesEtFrequencesPage';
-import ResonanceSchumannPage from '@/pages/blog/ResonanceSchumannPage';
-import EauMemoirePage from '@/pages/blog/EauMemoirePage';
+import BlogListPage from '@/pages/BlogListPage';
+import BlogPostPage from '@/pages/BlogPostPage';
 import DirectoryGatePage from '@/pages/DirectoryGatePage';
-import RegistrationTypePage from '@/pages/RegistrationTypePage';
 import EditTherapistProfilePage from '@/pages/EditTherapistProfilePage';
 import MyInnerJourneyPage from '@/pages/MyInnerJourneyPage';
 import ServiceDetailPage from '@/pages/ServiceDetailPage';
@@ -30,7 +27,7 @@ import EauPage from '@/pages/EauPage';
 import FeuPage from '@/pages/FeuPage';
 import AirPage from '@/pages/AirPage';
 import EtherPage from '@/pages/EtherPage';
-import TherapistGatePage from '@/pages/TherapistGatePage';
+import TherapistCharterPage from '@/pages/TherapistCharterPage';
 import ContactPage from '@/pages/ContactPage';
 import { Toaster } from '@/components/ui/toaster';
 import ScrollToTop from '@/components/ScrollToTop';
@@ -49,27 +46,24 @@ function App() {
       <Routes>
         <Route path="/" element={<HomePage />} />
         <Route path="/quiz" element={<QuizPage />} />
-        <Route path="/annuaire" element={<DirectoryPage />} />
-        <Route path="/artistes" element={<ArtistsDirectoryPage />} />
-        <Route path="/artiste/:id" element={<ArtistProfilePage />} />
-        <Route path="/inscription-artiste" element={<RegisterArtistPage />} />
-        <Route path="/mon-compte/modifier-profil-artiste" element={<EditArtistProfilePage />} />
-        <Route path="/admin" element={<AdminDashboardPage />} />
+        <Route path="/directory" element={<TherapistsDirectoryPage />} />
+        <Route path="/artistes" element={<CreatorsDirectoryPage />} />
+        <Route path="/artiste/:id" element={<CreatorProfilePage />} />
+        <Route path="/register-creator" element={<RegisterCreatorPage />} />
+        <Route path="/edit-creator-profile" element={<EditCreatorProfilePage />} />
+        <Route path="/admin" element={<AdminPage />} />
         <Route path="/admin/login" element={<AdminLoginPage />} />
         <Route path="/espace/:spaceId" element={<PersonalSpacePage />} />
-        <Route path="/annuaire-gate" element={<DirectoryGatePage />} />
+        <Route path="/directory-gate" element={<DirectoryGatePage />} />
         <Route path="/eline-dracon" element={<ElinePage />} />
         <Route path="/soin/rituel-dome-eau-terre" element={<RituelDomeEauTerrePage />} />
         <Route path="/soin/:serviceId" element={<ServiceDetailPage />} />
         <Route path="/therapeute/:id" element={<TherapistProfile />} />
-        <Route path="/rejoindre-aventure" element={<TherapistGatePage />} />
-        <Route path="/inscription-type" element={<RegistrationTypePage />} />
-        <Route path="/inscription-formulaire" element={<RegisterTherapistPage />} />
-        <Route path="/blog" element={<BlogPage />} />
-        <Route path="/blog/formes-et-frequences" element={<FormesEtFrequencesPage />} />
-        <Route path="/blog/resonance-schumann" element={<ResonanceSchumannPage />} />
-        <Route path="/blog/eau-memoire" element={<EauMemoirePage />} />
-        <Route path="/mon-compte/modifier-profil" element={<EditTherapistProfilePage />} />
+        <Route path="/therapist-charter" element={<TherapistCharterPage />} />
+        <Route path="/register-therapist" element={<RegisterTherapistPage />} />
+        <Route path="/blog" element={<BlogListPage />} />
+        <Route path="/blog/:slug" element={<BlogPostPage />} />
+        <Route path="/edit-therapist-profile" element={<EditTherapistProfilePage />} />
         <Route path="/mon-voyage-interieur" element={<MyInnerJourneyPage />} />
         <Route path="/porte/terre" element={<TerrePage />} />
         <Route path="/porte/eau" element={<EauPage />} />

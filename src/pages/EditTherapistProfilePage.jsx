@@ -9,7 +9,7 @@ import { Label } from '@/components/ui/label';
 import { Textarea } from '@/components/ui/textarea';
 import { useToast } from '@/components/ui/use-toast';
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@/components/ui/select';
-import { getTherapistById, updateTherapist } from '@/lib/database';
+import { getTherapistById, updateTherapist } from '@/lib/therapists';
 import { experienceCategories } from '@/lib/journeyData';
 import { cn } from '@/lib/utils';
 import { Checkbox } from '@/components/ui/checkbox';
@@ -52,8 +52,8 @@ const EditTherapistProfilePage = () => {
       setFormData({
         name: therapistData.name || '',
         commune: therapistData.commune || '',
-        relianceDirecte: therapistData.relianceDirecte || '',
-        presenceInspirante: therapistData.presenceInspirante || '',
+        phone: therapistData.phone || '',
+        website: therapistData.website || '',
         vibrationalPhrase: therapistData.vibrationalPhrase || '',
         mission: therapistData.mission || '',
         approach: therapistData.approach || '',
@@ -173,12 +173,12 @@ const EditTherapistProfilePage = () => {
                 </Select>
               </div>
               <div className="space-y-2">
-                <Label htmlFor="relianceDirecte" className="font-['Dancing_Script'] aura-text text-3xl">Reliance directe</Label>
-                <Input id="relianceDirecte" name="relianceDirecte" type="tel" value={formData.relianceDirecte} onChange={handleChange} />
+                <Label htmlFor="phone" className="font-['Dancing_Script'] aura-text text-3xl">Téléphone</Label>
+                <Input id="phone" name="phone" type="tel" value={formData.phone} onChange={handleChange} />
               </div>
               <div className="space-y-2">
-                <Label htmlFor="presenceInspirante" className="font-['Dancing_Script'] aura-text text-3xl">Présence inspirante</Label>
-                <Input id="presenceInspirante" name="presenceInspirante" value={formData.presenceInspirante} onChange={handleChange} />
+                <Label htmlFor="website" className="font-['Dancing_Script'] aura-text text-3xl">Site web</Label>
+                <Input id="website" name="website" value={formData.website} onChange={handleChange} />
               </div>
             </div>
 

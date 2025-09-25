@@ -12,7 +12,7 @@ import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@
 import { Checkbox } from '@/components/ui/checkbox';
 import { cn } from '@/lib/utils';
 import { experienceCategories } from '@/lib/journeyData';
-import { addTherapist } from '@/lib/database';
+import { addTherapist } from '@/lib/therapists';
 
 
 const guadeloupeCommunes = [
@@ -63,8 +63,8 @@ const RegisterTherapistPage = () => {
   const [formData, setFormData] = useState({
     name: '',
     commune: '',
-    relianceDirecte: '',
-    presenceInspirante: '',
+    phone: '',
+    website: '',
     vibrationalPhrase: '',
     mission: '',
     approach: '',
@@ -234,12 +234,12 @@ const RegisterTherapistPage = () => {
                         </Select>
                     </div>
                     <div>
-                        <Label htmlFor="relianceDirecte" className="font-semibold text-lg">Reliance directe (téléphone)*</Label>
-                        <Input id="relianceDirecte" name="relianceDirecte" type="tel" value={formData.relianceDirecte} onChange={handleChange} required />
+                        <Label htmlFor="phone" className="font-semibold text-lg">Téléphone*</Label>
+                        <Input id="phone" name="phone" type="tel" value={formData.phone} onChange={handleChange} required />
                     </div>
                     <div>
-                        <Label htmlFor="presenceInspirante" className="font-semibold text-lg">Présence inspirante (lien)</Label>
-                        <Input id="presenceInspirante" name="presenceInspirante" value={formData.presenceInspirante} onChange={handleChange} />
+                        <Label htmlFor="website" className="font-semibold text-lg">Site web (lien)</Label>
+                        <Input id="website" name="website" value={formData.website} onChange={handleChange} />
                     </div>
                 </div>
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
