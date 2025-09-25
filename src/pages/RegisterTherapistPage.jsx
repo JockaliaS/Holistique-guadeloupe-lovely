@@ -12,7 +12,6 @@ import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@
 import { Checkbox } from '@/components/ui/checkbox';
 import { cn } from '@/lib/utils';
 import { experienceCategories } from '@/lib/journeyData';
-import { addTherapist } from '@/lib/therapists';
 import { addTherapist } from '@/lib/database';
 
 

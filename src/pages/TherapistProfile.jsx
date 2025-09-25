@@ -5,7 +5,6 @@ import { Helmet } from 'react-helmet';
 import { ArrowLeft, Star, Heart, Phone, Globe, MapPin, Calendar, Sun, Wind, Droplets, Mountain, Star as StarIcon, Edit } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { useToast } from '@/components/ui/use-toast';
-import { getTherapistById } from '@/lib/therapists';
 import { getTherapistById } from '@/lib/database';
 import { experienceCategories } from '@/lib/journeyData';
 

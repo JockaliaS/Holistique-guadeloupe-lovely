@@ -7,6 +7,8 @@ import { Button } from '@/components/ui/button';
 import { Checkbox } from '@/components/ui/checkbox';
 import { Label } from '@/components/ui/label';
 import { Input } from '@/components/ui/input';
+import { UserPlus } from 'lucide-react';
+import { Input } from '@/components/ui/input';
 const TherapistGatePage = () => {
   const [step, setStep] = useState(1);
   const [engagementAccepted, setEngagementAccepted] = useState(false);

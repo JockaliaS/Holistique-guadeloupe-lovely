@@ -5,7 +5,6 @@ import { Search, MapPin, Star, Heart, Phone, Feather, Zap, Waves, Leaf, BrainCir
 import { Button } from '@/components/ui/button';
 import { useToast } from '@/components/ui/use-toast';
 import { Link, useLocation, useNavigate } from 'react-router-dom';
-import { getAllTherapists } from '@/lib/therapists';
 import { getAllTherapists } from '@/lib/database';
 
 const needsConfig = {

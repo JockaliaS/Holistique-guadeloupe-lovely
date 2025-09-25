@@ -1,14 +1,11 @@
 // Base de données centralisée pour toutes les entités
-import { supabase } from '@/lib/customSupabaseClient';
-
-// Données initiales pour les thérapeutes
 const initialTherapists = [
   {
     id: 1,
     name: "Éline Dracon",
     type: "therapist",
     vibrationalPhrase: "Je t'aide à renouer avec la mémoire de ton corps et l'intelligence de l'eau.",
-    image: "https://storage.googleapis.com/hostinger-horizons-assets-prod/31d0e86a-732d-4c00-87e3-8bc851042c67/63be44ae937c11b4281137e9f223f814.jpg",
+    image: "https://images.unsplash.com/photo-1594736797933-d0401ba2fe65?q=80&w=1974&auto=format&fit=crop",
     elements: ['Eau', 'Éther'],
     commune: "Pointe-à-Pitre",
     rating: 5.0,
@@ -32,7 +29,7 @@ const initialTherapists = [
     name: "Maya Soleil",
     type: "therapist",
     vibrationalPhrase: "Je t'accompagne pour transformer tes ombres en lumière et réveiller ton feu sacré.",
-    image: "https://images.unsplash.com/photo-1594736797933-d0401ba2fe65?q=80&w=1974&auto=format&fit=crop",
+    image: "https://images.unsplash.com/photo-1580489944761-15a19d654956?q=80&w=1961&auto=format&fit=crop",
     elements: ['Feu', 'Air'],
     commune: "Basse-Terre",
     rating: 4.9,
@@ -80,7 +77,7 @@ const initialTherapists = [
     name: "Clara Céleste",
     type: "therapist",
     vibrationalPhrase: "Par le souffle et la parole, je t'aide à clarifier ton esprit et à t'ouvrir à ta guidance intérieure.",
-    image: "https://images.unsplash.com/photo-1580489944761-15a19d654956?q=80&w=1961&auto=format&fit=crop",
+    image: "https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?q=80&w=1976&auto=format&fit=crop",
     elements: ['Air', 'Éther'],
     commune: "Saint-François",
     rating: 4.9,
@@ -98,6 +95,30 @@ const initialTherapists = [
     personalSpaceId: "clara-celeste-space-004",
     createdAt: new Date('2024-03-05').toISOString(),
     updatedAt: new Date('2024-03-05').toISOString()
+  },
+  {
+    id: 5,
+    name: "Iris Divina",
+    type: "therapist",
+    vibrationalPhrase: "Dans le silence, je t'ouvre les portes du cosmos intérieur.",
+    image: "https://images.unsplash.com/photo-1544005313-94ddf0286df2?q=80&w=1976&auto=format&fit=crop",
+    elements: ['Éther', 'Eau'],
+    commune: "Sainte-Anne",
+    rating: 5.0,
+    featured: true,
+    relianceDirecte: "0590 67 89 01",
+    presenceInspirante: "calendly.com/iris",
+    experiences: {
+      "meditation_rituels": ["rituel_passage"],
+      "voyage_sensoriel": ["bain_sonore_sensoriel"]
+    },
+    approach: "Je crée des espaces sacrés où, par le son et le rituel, vous pouvez voyager à l'intérieur de vous-même et vous connecter au mystère.",
+    mantra: "Le plus grand des voyages est intérieur.",
+    mission: "T'ouvrir à l'invisible, au grand mystère qui vit en toi et autour de toi. Ma mission est de te guider dans ton voyage intérieur.",
+    messageBienvenue: "Le mystère t'appelle. Es-tu prêt·e à écouter les murmures de ton âme ?",
+    personalSpaceId: "iris-divina-space-005",
+    createdAt: new Date('2024-03-12').toISOString(),
+    updatedAt: new Date('2024-03-12').toISOString()
   }
 ];
 
@@ -112,7 +133,8 @@ const initialArtists = [
     image: "https://images.unsplash.com/photo-1579783902614-a3fb3927b6a5?q=80&w=1948&auto=format&fit=crop",
     portfolioImages: [
       "https://images.unsplash.com/photo-1578662996442-48f60103fc96?q=80&w=1974&auto=format&fit=crop",
-      "https://images.unsplash.com/photo-1541961017774-22349e4a1262?q=80&w=1974&auto=format&fit=crop"
+      "https://images.unsplash.com/photo-1541961017774-22349e4a1262?q=80&w=1974&auto=format&fit=crop",
+      "https://images.unsplash.com/photo-1513475382585-d06e58bcb0e0?q=80&w=1974&auto=format&fit=crop"
     ],
     commune: "Sainte-Rose",
     contact: "atelier.lumina@email.com",
@@ -133,7 +155,8 @@ const initialArtists = [
     image: "https://images.unsplash.com/photo-1565034893982-598150a04297?q=80&w=1974&auto=format&fit=crop",
     portfolioImages: [
       "https://images.unsplash.com/photo-1578662996442-48f60103fc96?q=80&w=1974&auto=format&fit=crop",
-      "https://images.unsplash.com/photo-1541961017774-22349e4a1262?q=80&w=1974&auto=format&fit=crop"
+      "https://images.unsplash.com/photo-1493106641515-6b5631de4bb9?q=80&w=1974&auto=format&fit=crop",
+      "https://images.unsplash.com/photo-1565193566173-7a0ee3dbe261?q=80&w=1974&auto=format&fit=crop"
     ],
     commune: "Trois-Rivières",
     contact: "@terre.esprit",
@@ -154,7 +177,8 @@ const initialArtists = [
     image: "https://images.unsplash.com/photo-1626825488437-b43b67bce1b4?q=80&w=1974&auto=format&fit=crop",
     portfolioImages: [
       "https://images.unsplash.com/photo-1578662996442-48f60103fc96?q=80&w=1974&auto=format&fit=crop",
-      "https://images.unsplash.com/photo-1541961017774-22349e4a1262?q=80&w=1974&auto=format&fit=crop"
+      "https://images.unsplash.com/photo-1541961017774-22349e4a1262?q=80&w=1974&auto=format&fit=crop",
+      "https://images.unsplash.com/photo-1515886657613-9f3515b0c78f?q=80&w=1974&auto=format&fit=crop"
     ],
     commune: "Le Moule",
     contact: "fils.dor@artisan.com",
@@ -174,8 +198,9 @@ const initialArtists = [
     description: "Crée des bijoux éphémères et durables à partir de fleurs, de feuilles et de graines, capturant la beauté fugace de la flore.",
     image: "https://images.unsplash.com/photo-1611652033933-913711993922?q=80&w=1974&auto=format&fit=crop",
     portfolioImages: [
-      "https://images.unsplash.com/photo-1578662996442-48f60103fc96?q=80&w=1974&auto=format&fit=crop",
-      "https://images.unsplash.com/photo-1541961017774-22349e4a1262?q=80&w=1974&auto=format&fit=crop"
+      "https://images.unsplash.com/photo-1515562141207-7a88fb7ce338?q=80&w=1974&auto=format&fit=crop",
+      "https://images.unsplash.com/photo-1506629905607-c28b47d3e7b0?q=80&w=1974&auto=format&fit=crop",
+      "https://images.unsplash.com/photo-1602173574767-37ac01994b2a?q=80&w=1974&auto=format&fit=crop"
     ],
     commune: "Deshaies",
     contact: "0590 34 56 78",
@@ -196,7 +221,8 @@ const initialArtists = [
     image: "https://images.unsplash.com/photo-1595053910376-7b0a701a5d6a?q=80&w=1974&auto=format&fit=crop",
     portfolioImages: [
       "https://images.unsplash.com/photo-1578662996442-48f60103fc96?q=80&w=1974&auto=format&fit=crop",
-      "https://images.unsplash.com/photo-1541961017774-22349e4a1262?q=80&w=1974&auto=format&fit=crop"
+      "https://images.unsplash.com/photo-1541961017774-22349e4a1262?q=80&w=1974&auto=format&fit=crop",
+      "https://images.unsplash.com/photo-1506905925346-21bda4d32df4?q=80&w=1974&auto=format&fit=crop"
     ],
     commune: "Goyave",
     contact: "bois.ancestral@email.com",
@@ -207,6 +233,27 @@ const initialArtists = [
     personalSpaceId: "bois-ancestral-space-005",
     createdAt: new Date('2024-01-25').toISOString(),
     updatedAt: new Date('2024-01-25').toISOString()
+  },
+  {
+    id: 6,
+    name: "Luna Cristal",
+    type: "artist",
+    craft: "Créations Cristallines & Lithothérapie",
+    description: "Travaille les cristaux et minéraux locaux pour créer des bijoux et objets de méditation qui amplifient les énergies subtiles.",
+    image: "https://images.unsplash.com/photo-1438761681033-6461ffad8d80?q=80&w=1974&auto=format&fit=crop",
+    portfolioImages: [
+      "https://images.unsplash.com/photo-1515562141207-7a88fb7ce338?q=80&w=1974&auto=format&fit=crop",
+      "https://images.unsplash.com/photo-1602173574767-37ac01994b2a?q=80&w=1974&auto=format&fit=crop"
+    ],
+    commune: "Bouillante",
+    contact: "luna.cristal@minerals.gp",
+    featured: false,
+    category: "Bijoux",
+    techniques: ["Sertissage", "Polissage", "Énergétisation"],
+    priceRange: "25€ - 300€",
+    personalSpaceId: "luna-cristal-space-006",
+    createdAt: new Date('2024-03-08').toISOString(),
+    updatedAt: new Date('2024-03-08').toISOString()
   }
 ];
 
@@ -291,6 +338,23 @@ Redécouvrir cette pharmacie naturelle, c'est se reconnecter à la sagesse de la
     publishedAt: new Date('2024-05-20').toISOString(),
     tags: ["phytothérapie", "Guadeloupe", "plantes médicinales"],
     featured: true,
+    status: "published"
+  },
+  {
+    id: 6,
+    title: "🔮 Les cristaux de Guadeloupe : trésors énergétiques",
+    slug: "cristaux-guadeloupe",
+    excerpt: "La terre volcanique de Guadeloupe recèle de cristaux aux propriétés énergétiques uniques. Découvrez ces alliés minéraux pour votre bien-être.",
+    content: `La terre volcanique de Guadeloupe recèle de cristaux aux propriétés énergétiques uniques. Ces formations minérales, nées du feu de la terre et de l'eau de mer, portent en elles une vibration particulière.
+
+L'obsidienne noire, formée par le refroidissement rapide de la lave, est un puissant protecteur énergétique. Le quartz rose, rare mais présent, ouvre le cœur à l'amour inconditionnel.
+
+Chaque cristal est un enseignant silencieux, une bibliothèque de sagesse minérale qui attend d'être découverte.`,
+    image: "https://images.unsplash.com/photo-1518709268805-4e9042af2176?q=80&w=2070&auto=format&fit=crop",
+    author: "Luna Cristal",
+    publishedAt: new Date('2024-04-18').toISOString(),
+    tags: ["cristaux", "lithothérapie", "énergies"],
+    featured: false,
     status: "published"
   }
 ];
