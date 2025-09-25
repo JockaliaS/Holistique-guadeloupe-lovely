@@ -4,6 +4,8 @@ import { motion } from 'framer-motion';
 import { Helmet } from 'react-helmet';
 import { Sparkles, Heart, Calendar, MapPin, Clock, Star, ArrowLeft, Share2, Bookmark, FileEdit as Edit3 } from 'lucide-react';
 import { Button } from '@/components/ui/button';
+import { Input } from '@/components/ui/input';
+import { Label } from '@/components/ui/label';
 import { useToast } from '@/components/ui/use-toast';
 import { createJourneySpace, getCurrentJourneySpaceFromCookie } from '@/lib/journeySpaces';
 
@@ -35,6 +37,7 @@ const JourneyResultsPage = () => {
   const { toast } = useToast();
   const [journeySpace, setJourneySpace] = useState(null);
   const [isCreating, setIsCreating] = useState(false);
+  const [userName, setUserName] = useState('');
 
   const journeyData = location.state?.journeyData;
 
@@ -56,7 +59,11 @@ const JourneyResultsPage = () => {
     setIsCreating(true);
     
     try {
-      const newSpace = createJourneySpace(journeyData);
+      const dataWithName = {
+        ...journeyData,
+        userName: userName || 'Voyageur Anonyme'
+      };
+      const newSpace = createJourneySpace(dataWithName);
       setJourneySpace(newSpace);
       
       toast({
@@ -219,6 +226,18 @@ const JourneyResultsPage = () => {
                   <p className="text-lg text-white/90 mb-6">
                     Souhaitez-vous sauvegarder ce voyage dans votre espace personnel ?
                   </p>
+                  <div className="max-w-md mx-auto mb-6">
+                    <Label htmlFor="userName" className="text-white/90 mb-2 block">
+                      Votre nom (optionnel)
+                    </Label>
+                    <Input
+                      id="userName"
+                      value={userName}
+                      onChange={(e) => setUserName(e.target.value)}
+                      placeholder="Entrez votre nom..."
+                      className="text-center"
+                    />
+                  </div>
                   <Button
                     onClick={handleCreateSpace}
                     disabled={isCreating}

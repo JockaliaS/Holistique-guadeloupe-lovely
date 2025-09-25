@@ -40,7 +40,7 @@ const JourneySpaceIndicator = () => {
               <Compass className="w-6 h-6 text-primary flex-shrink-0" />
               <div>
                 <p className="font-semibold text-sm text-foreground">
-                  Votre Voyage Personnel
+                  {journeySpace.userName ? `Espace de ${journeySpace.userName}` : 'Votre Voyage Personnel'}
                 </p>
                 <p className="text-xs text-foreground/70">
                   Créé le {new Date(journeySpace.createdAt).toLocaleDateString('fr-FR')}

@@ -130,7 +130,7 @@ const PersonalJourneySpacePage = () => {
             <Compass className="w-16 h-16 mx-auto mb-6 text-primary floating-animation" />
             <h1 className="text-4xl md:text-5xl font-bold mb-4">
               <span className="aura-text font-['Dancing_Script']">
-                Mon Espace Personnel
+                {journeySpace.userName ? `Espace de ${journeySpace.userName}` : 'Mon Espace Personnel'}
               </span>
             </h1>
             <div className="flex justify-center items-center gap-4 text-foreground/70">
